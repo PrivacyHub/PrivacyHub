@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartPrivacyHub - IoT Privacy Awareness</title>
+    <style>
+        /* ===== RESET & BASE STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #2C3E50;
+            --secondary-blue: #3498DB;
+            --light-blue: #E8F4FD;
+            --accent-orange: #E67E22;
+            --accent-red: #E74C3C;
+            --success-green: #27AE60;
+            --dark-text: #2C3E50;
+            --light-text: #ECF0F1;
+            --gray-bg: #F5F7FA;
+            --white: #FFFFFF;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-text);
+            background-color: var(--white);
+        }
+
+        /* ===== TYPOGRAPHY ===== */
+        h1, h2, h3, h4 {
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: var(--primary-blue);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--accent-orange);
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            color: var(--secondary-blue);
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        /* ===== LAYOUT & CONTAINERS ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* ===== NAVIGATION ===== */
+        .navbar {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+        }
+
+        .logo-text span {
+            color: var(--secondary-blue);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-menu a:hover {
+            color: var(--secondary-blue);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* ===== BUTTONS & LINKS ===== */
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--secondary-blue);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-blue);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: var(--accent-orange);
+            color: var(--white);
+        }
+
+        .btn-secondary:hover {
+            background-color: #D35400;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--secondary-blue);
+            color: var(--secondary-blue);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--secondary-blue);
+            color: var(--white);
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            color: var(--white);
+            padding: 6rem 0;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .hero-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        /* ===== ICONS & VISUAL ELEMENTS ===== */
+        .icon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .icon-card {
+            text-align: center;
+            padding: 2rem;
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .icon-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .icon-card i {
+            font-size: 3rem;
+            color: var(--secondary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .icon-card .icon-lock { color: var(--success-green); }
+        .icon-card .icon-shield { color: var(--accent-orange); }
+        .icon-card .icon-eye { color: var(--secondary-blue); }
+        .icon-card .icon-alert { color: var(--accent-red); }
+
+        /* ===== BLOG CARDS ===== */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .blog-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .blog-image {
+            height: 200px;
+            background-color: var(--light-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary-blue);
+            font-size: 3rem;
+        }
+
+        .blog-content {
+            padding: 1.5rem;
+        }
+
+        .blog-category {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: var(--light-blue);
+            color: var(--secondary-blue);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .blog-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-excerpt {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .read-more {
+            color: var(--secondary-blue);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* ===== PRIVACY GUIDES SECTION ===== */
+        .guides-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .guide-card {
+            background: linear-gradient(135deg, var(--white) 0%, var(--light-blue) 100%);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--secondary-blue);
+        }
+
+        .guide-icon {
+            font-size: 2.5rem;
+            color: var(--secondary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .guide-step {
+            background: var(--secondary-blue);
+            color: var(--white);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1rem auto;
+            font-weight: bold;
+        }
+
+        /* ===== STATS SECTION ===== */
+        .stats-section {
+            background: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 2rem;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--accent-orange);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* ===== DATA FLOW DIAGRAM ===== */
+        .data-flow {
+            background: var(--gray-bg);
+            padding: 3rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+
+        .flow-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .flow-node {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 10px;
+            min-width: 150px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .flow-node i {
+            font-size: 2rem;
+            color: var(--secondary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .flow-arrow {
+            font-size: 2rem;
+            color: var(--accent-orange);
+        }
+
+        .flow-node.risk {
+            border: 2px solid var(--accent-red);
+        }
+
+        /* ===== FAQ SECTION ===== */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--white);
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            box-shadow: var(--shadow);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+
+        .faq-question i {
+            transition: var(--transition);
+        }
+
+        .faq-question.active i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            display: none;
+        }
+
+        .faq-answer.show {
+            display: block;
+        }
+
+        /* ===== NEWSLETTER ===== */
+        .newsletter {
+            background: linear-gradient(135deg, var(--secondary-blue) 0%, var(--primary-blue) 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 4rem 0;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 1rem;
+            max-width: 500px;
+            margin: 2rem auto 0;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        /* ===== SURVEY SECTION ===== */
+        .survey-section {
+            background: var(--gray-bg);
+        }
+
+        .survey-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .survey-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .survey-link {
+            display: inline-block;
+            margin-top: 1rem;
+            color: var(--secondary-blue);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            color: var(--light-blue);
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: var(--white);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+
+        .footer-section a:hover {
+            opacity: 1;
+            color: var(--accent-orange);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            opacity: 0.8;
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: var(--shadow);
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-image {
+                display: none;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .survey-container {
+                grid-template-columns: 1fr;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .flow-container {
+                flex-direction: column;
+            }
+
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease forwards;
+        }
+
+        /* ===== PRIVACY POLICY MODAL ===== */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .close-modal {
+            float: right;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+    </style>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="logo">
+                <!-- Using Font Awesome icon as logo placeholder -->
+                <i class="fas fa-shield-alt" style="font-size: 2rem; color: var(--secondary-blue);"></i>
+                <span class="logo-text">Smart<span>Privacy</span>Hub</span>
+            </div>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#guides">Privacy Guides</a></li>
+                <li><a href="#risks">IoT Risks</a></li>
+                <li><a href="#survey">Survey</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container hero-content">
+            <div class="hero-text fade-in">
+                <h1>Take Control of Your IoT Privacy</h1>
+                <p>Learn how smart devices collect your data and discover practical steps to protect your privacy in an increasingly connected world.</p>
+                <div class="hero-buttons">
+                    <a href="#guides" class="btn btn-primary">Start Learning</a>
+                    <a href="#survey" class="btn btn-outline">Take Our Survey</a>
+                </div>
+            </div>
+            <div class="hero-image fade-in">
+                <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 10px; text-align: center;">
+                    <i class="fas fa-iot" style="font-size: 4rem; margin-bottom: 1rem;"></i>
+                    <h3>Smart Privacy for Smart Homes</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">39B</div>
+                    <div class="stat-label">IoT Devices by 2030</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">48%</div>
+                    <div class="stat-label">Users Unaware of Privacy Risks</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">$537B</div>
+                    <div class="stat-label">Smart Home Market by 2030</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">80%</div>
+                    <div class="stat-label">Don't Know Devices Are Always Listening</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Privacy Icons Section -->
+    <section>
+        <div class="container">
+            <div class="section-title">
+                <h2>Understanding IoT Privacy</h2>
+                <p>Key concepts explained through simple visual guides</p>
+            </div>
+            <div class="icon-grid">
+                <div class="icon-card">
+                    <i class="fas fa-lock icon-lock"></i>
+                    <h3>Data Encryption</h3>
+                    <p>Learn how your data is protected during transmission between devices and cloud services.</p>
+                </div>
+                <div class="icon-card">
+                    <i class="fas fa-shield-alt icon-shield"></i>
+                    <h3>Privacy Protection</h3>
+                    <p>Simple steps to safeguard your personal information on smart devices.</p>
+                </div>
+                <div class="icon-card">
+                    <i class="fas fa-eye icon-eye"></i>
+                    <h3>Always Listening</h3>
+                    <p>Understand how devices like Alexa and Google Home collect voice data.</p>
+                </div>
+                <div class="icon-card">
+                    <i class="fas fa-exclamation-triangle icon-alert"></i>
+                    <h3>Risk Awareness</h3>
+                    <p>Identify potential privacy breaches and how to prevent them.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="blog-section" style="background: var(--gray-bg);">
+        <div class="container">
+            <div class="section-title">
+                <h2>Latest Privacy Insights</h2>
+                <p>Stay informed with our latest blog posts about IoT privacy</p>
+            </div>
+            <div class="blog-grid">
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <i class="fas fa-microphone-alt"></i>
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-category">Smart Speakers</span>
+                        <h3 class="blog-title">Is Your Smart Speaker Always Listening?</h3>
+                        <p class="blog-excerpt">Understanding how Alexa, Google Home, and other smart speakers collect and process your voice data...</p>
+                        <div class="blog-meta">
+                            <span><i class="far fa-clock"></i> 5 min read</span>
+                            <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </article>
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <i class="fas fa-tv"></i>
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-category">Smart TVs</span>
+                        <h3 class="blog-title">Smart TVs: The Privacy Risks You Didn't Know</h3>
+                        <p class="blog-excerpt">Discover how your viewing habits are being tracked and shared with third-party companies...</p>
+                        <div class="blog-meta">
+                            <span><i class="far fa-clock"></i> 7 min read</span>
+                            <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </article>
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-category">Security</span>
+                        <h3 class="blog-title">5 Easy Steps to Secure Your IoT Devices</h3>
+                        <p class="blog-excerpt">Practical, actionable steps you can take today to protect your privacy and secure your smart home...</p>
+                        <div class="blog-meta">
+                            <span><i class="far fa-clock"></i> 4 min read</span>
+                            <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Privacy Guides Section -->
+    <section id="guides">
+        <div class="container">
+            <div class="section-title">
+                <h2>Step-by-Step Privacy Guides</h2>
+                <p>Actionable instructions to protect your privacy on popular devices</p>
+            </div>
+            <div class="guides-grid">
+                <div class="guide-card">
+                    <div class="guide-icon">
+                        <i class="fab fa-amazon"></i>
+                    </div>
+                    <div class="guide-step">1</div>
+                    <h3>Amazon Alexa</h3>
+                    <p>Disable voice recordings, manage history, and opt-out of data sharing.</p>
+                    <a href="#" class="btn btn-secondary" style="margin-top: 1rem;">View Guide</a>
+                </div>
+                <div class="guide-card">
+                    <div class="guide-icon">
+                        <i class="fab fa-google"></i>
+                    </div>
+                    <div class="guide-step">2</div>
+                    <h3>Google Home</h3>
+                    <p>Control location tracking, delete activity, and manage privacy settings.</p>
+                    <a href="#" class="btn btn-secondary" style="margin-top: 1rem;">View Guide</a>
+                </div>
+                <div class="guide-card">
+                    <div class="guide-icon">
+                        <i class="fas fa-tv"></i>
+                    </div>
+                    <div class="guide-step">3</div>
+                    <h3>Smart TVs</h3>
+                    <p>Stop viewing history tracking and disable ACR features.</p>
+                    <a href="#" class="btn btn-secondary" style="margin-top: 1rem;">View Guide</a>
+                </div>
+                <div class="guide-card">
+                    <div class="guide-icon">
+                        <i class="fas fa-thermometer-half"></i>
+                    </div>
+                    <div class="guide-step">4</div>
+                    <h3>Smart Thermostats</h3>
+                    <p>Manage occupancy data and prevent behavior tracking.</p>
+                    <a href="#" class="btn btn-secondary" style="margin-top: 1rem;">View Guide</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Data Flow Diagram Section -->
+    <section style="background: var(--gray-bg);">
+        <div class="container">
+            <div class="section-title">
+                <h2>How Your Data Flows</h2>
+                <p>Visualizing the journey of your personal information</p>
+            </div>
+            <div class="data-flow">
+                <div class="flow-container">
+                    <div class="flow-node">
+                        <i class="fas fa-home"></i>
+                        <h4>Smart Device</h4>
+                        <p>Collects voice/data</p>
+                    </div>
+                    <div class="flow-arrow">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                    <div class="flow-node">
+                        <i class="fas fa-cloud"></i>
+                        <h4>Cloud Servers</h4>
+                        <p>Processing & Storage</p>
+                    </div>
+                    <div class="flow-arrow">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                    <div class="flow-node risk">
+                        <i class="fas fa-building"></i>
+                        <h4>Third Parties</h4>
+                        <p>Advertisers, Analytics</p>
+                        <span style="color: var(--accent-red);">⚠️ Risk Area</span>
+                    </div>
+                </div>
+                <p style="text-align: center; margin-top: 2rem; color: #666;">
+                    <i class="fas fa-info-circle"></i> Your data often travels further than you think
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section>
+        <div class="container">
+            <div class="section-title">
+                <h2>Frequently Asked Questions</h2>
+                <p>Common questions about IoT privacy answered</p>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What data does my smart speaker collect?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Smart speakers collect voice commands, ambient audio (when they detect wake words), device usage patterns, and sometimes location data. This information is sent to cloud servers for processing and can be used to improve services or shared with third parties.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How can I stop my smart TV from tracking me?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You can disable ACR (Automatic Content Recognition) in your TV's privacy settings, opt out of data collection in the terms of service, and regularly clear your viewing history. Check our Smart TV guide for step-by-step instructions.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Are my conversations always being recorded?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>While devices are always listening for wake words (like "Alexa" or "Hey Google"), they only start recording and sending data to the cloud after detecting these words. However, accidental activations can occur, leading to unintended recordings.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What rights do I have under GDPR?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Under GDPR, you have the right to access your data, request deletion, opt out of data processing, and receive clear information about how your data is used. Smart device manufacturers must comply with these requirements for EU users.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Legal Insights Section -->
+    <section style="background: var(--light-blue);">
+        <div class="container">
+            <div class="section-title">
+                <h2>Privacy Laws & Your Rights</h2>
+                <p>Understanding GDPR, CCPA, and how they protect you</p>
+            </div>
+            <div class="icon-grid">
+                <div class="icon-card">
+                    <i class="fas fa-gavel" style="color: var(--primary-blue);"></i>
+                    <h3>GDPR (EU)</h3>
+                    <p>Right to access, right to deletion, data portability, and explicit consent requirements.</p>
+                </div>
+                <div class="icon-card">
+                    <i class="fas fa-balance-scale" style="color: var(--primary-blue);"></i>
+                    <h3>CCPA (California)</h3>
+                    <p>Right to know, right to delete, right to opt-out of data sales.</p>
+                </div>
+                <div class="icon-card">
+                    <i class="fas fa-file-contract" style="color: var(--primary-blue);"></i>
+                    <h3>Your Rights</h3>
+                    <p>Learn how to exercise your rights and request your data from manufacturers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Survey Section -->
+    <section id="survey" class="survey-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Privacy Awareness Survey</h2>
+                <p>Help us understand your privacy knowledge and improve our platform</p>
+            </div>
+            <div class="survey-container">
+                <div class="survey-card">
+                    <i class="fas fa-clipboard-list" style="font-size: 2rem; color: var(--secondary-blue); margin-bottom: 1rem;"></i>
+                    <h3>Pre-Survey</h3>
+                    <p>Take this survey before exploring our content to help us understand your current privacy awareness level.</p>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSeFN_u3AUsQY_zBw1f14uy4prZkUzqemrgrH4ncspqA-Ceimw/viewform" target="_blank" class="survey-link">
+                        Take Pre-Survey <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="survey-card">
+                    <i class="fas fa-chart-line" style="font-size: 2rem; color: var(--accent-orange); margin-bottom: 1rem;"></i>
+                    <h3>Post-Survey</h3>
+                    <p>After exploring our guides and blog posts, take this survey to help us measure our impact.</p>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScO1NJI7JeC9GVS0MagGOKFTxmbz4unz3sCDqU-O8dCweSQ_g/viewform" target="_blank" class="survey-link">
+                        Take Post-Survey <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="container">
+            <h2>Stay Updated on IoT Privacy</h2>
+            <p>Subscribe to receive privacy alerts, new guides, and the latest research</p>
+            <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing! (Demo - no data collected)');">
+                <input type="email" class="newsletter-input" placeholder="Enter your email" required>
+                <button type="submit" class="btn btn-secondary">Subscribe</button>
+            </form>
+            <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">
+                <i class="fas fa-lock"></i> We'll never share your email. Unsubscribe anytime.
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>SmartPrivacyHub</h4>
+                    <p>Empowering users to take control of their IoT privacy through education and actionable guides.</p>
+                    <div style="margin-top: 1rem;">
+                        <a href="#" style="margin-right: 1rem;"><i class="fab fa-twitter"></i></a>
+                        <a href="#" style="margin-right: 1rem;"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#blog">Blog</a></li>
+                        <li><a href="#guides">Privacy Guides</a></li>
+                        <li><a href="#survey">Surveys</a></li>
+                        <li><a href="#" id="privacyPolicyLink">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">GDPR Guide</a></li>
+                        <li><a href="#">CCPA Information</a></li>
+                        <li><a href="#">Device Settings</a></li>
+                        <li><a href="#">Research Papers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@smartprivacyhub.com</li>
+                        <li><i class="fas fa-phone"></i> +44 (0)123 456 789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Manchester, UK</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 SmartPrivacyHub. All rights reserved. | Created by Asayel Hasan</p>
+                <p style="font-size: 0.9rem; margin-top: 0.5rem;">This platform is for educational purposes and does not collect personal data.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Privacy Policy Modal -->
+    <div id="privacyModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Privacy Policy</h2>
+            <p>Last updated: December 2025</p>
+            <h3>Data Collection</h3>
+            <p>SmartPrivacyHub is committed to protecting your privacy. We collect minimal data necessary to improve our educational content:</p>
+            <ul style="margin-left: 1.5rem; margin-bottom: 1rem;">
+                <li>Anonymous survey responses</li>
+                <li>Voluntary feedback forms</li>
+                <li>Newsletter email addresses (with consent)</li>
+            </ul>
+            <h3>GDPR Compliance</h3>
+            <p>We comply with GDPR principles:</p>
+            <ul style="margin-left: 1.5rem; margin-bottom: 1rem;">
+                <li>Data minimization - we only collect what's necessary</li>
+                <li>Purpose limitation - data used only for platform improvement</li>
+                <li>Your rights - access, rectification, erasure</li>
+                <li>SSL encryption for all data transmission</li>
+            </ul>
+            <h3>Third-Party Links</h3>
+            <p>Our surveys use Google Forms. Please review Google's privacy policy for information on how they handle your data.</p>
+            <p>For any privacy concerns, contact us at privacy@smartprivacyhub.com</p>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // FAQ Accordion
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const icon = question.querySelector('i');
+                
+                // Toggle current FAQ
+                answer.classList.toggle('show');
+                icon.classList.toggle('fa-chevron-down');
+                icon.classList.toggle('fa-chevron-up');
+                
+                // Optional: Close other FAQs
+                faqQuestions.forEach(otherQuestion => {
+                    if (otherQuestion !== question) {
+                        const otherAnswer = otherQuestion.nextElementSibling;
+                        const otherIcon = otherQuestion.querySelector('i');
+                        otherAnswer.classList.remove('show');
+                        otherIcon.classList.remove('fa-chevron-up');
+                        otherIcon.classList.add('fa-chevron-down');
+                    }
+                });
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Privacy Policy Modal
+        const modal = document.getElementById('privacyModal');
+        const privacyLink = document.getElementById('privacyPolicyLink');
+        const closeBtn = document.querySelector('.close-modal');
+
+        privacyLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            modal.classList.add('active');
+        });
+
+        closeBtn.addEventListener('click', () => {
+            modal.classList.remove('active');
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+            }
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.icon-card, .blog-card, .guide-card, .stat-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Sticky navbar background change on scroll
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.style.backgroundColor = 'rgba(255,255,255,0.95)';
+                navbar.style.backdropFilter = 'blur(10px)';
+            } else {
+                navbar.style.backgroundColor = 'var(--white)';
+                navbar.style.backdropFilter = 'none';
+            }
+        });
+
+        // Survey link tracking (optional)
+        document.querySelectorAll('.survey-link').forEach(link => {
+            link.addEventListener('click', () => {
+                console.log('Survey link clicked:', link.href);
+                // You could add analytics tracking here
+            });
+        });
+
+        // Form submission prevention (demo only)
+        const newsletterForm = document.querySelector('.newsletter-form');
+        newsletterForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = newsletterForm.querySelector('input[type="email"]').value;
+            if (email) {
+                alert(`Demo: Thank you for subscribing with ${email}. In a production environment, this would be securely stored.`);
+                newsletterForm.reset();
+            }
+        });
+
+        // Current year in footer
+        document.querySelector('.footer-bottom p').innerHTML = `&copy; ${new Date().getFullYear()} SmartPrivacyHub. All rights reserved. | Created by Asayel Hasan`;
+    </script>
+</body>
+</html>
