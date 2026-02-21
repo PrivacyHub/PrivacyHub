@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Plug Privacy - SmartPrivacyHub</title>
+    <link rel="stylesheet" href="cssstyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-shield-alt"></i>
+                <span class="logo-text">Smart<span>Privacy</span>Hub</span>
+            </a>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="blogs.html">Blog</a></li>
+                <li><a href="guides.html">Privacy Guides</a></li>
+                <li><a href="survey.html">Survey</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Privacy Blog</h1>
+            <p>In-depth analysis of IoT privacy risks</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <article class="blog-post">
+            <div class="blog-post-header">
+                <span class="blog-category">Smart Home</span>
+                <h1>Smart Plug Privacy: Are Your Outlets Spying on You?</h1>
+                <div class="post-meta">
+                    <span><i class="far fa-calendar"></i> November 25, 2025</span>
+                    <span class="read-time"><i class="far fa-clock"></i> 4 min read</span>
+                    <span><i class="far fa-user"></i> By Asayel Hasan</span>
+                </div>
+            </div>
+
+            <div class="post-content">
+                <h2>What Data Do Smart Plugs Collect?</h2>
+                <p>Smart plugs track power usage, on/off schedules, device types, and sometimes app interactions. Some smart plugs also collect your IP address and location data if connected to Wi-Fi. They monitor exactly when devices are powered on or off, how much energy they consume, and can identify patterns in appliance usage. Some models track energy consumption in real-time and store historical usage data.</p>
+
+                <h2>How Do They Track Your Habits?</h2>
+                <p>By monitoring when devices are plugged in or turned on/off, smart plugs can create a pattern of your daily routines with surprising accuracy. For example, they can reveal when you wake up (coffee maker turns on), when you leave home (lights turn off), when you return (TV turns on), and when you go to bed (bedroom lamp turns off). Data is often sent to cloud servers for remote control or energy monitoring features, creating a detailed timeline of your daily activities.</p>
+
+                <div class="risk-box">
+                    <h3><i class="fas fa-exclamation-triangle" style="color: var(--accent-red);"></i> What Are the Privacy Risks?</h3>
+                    <p>If hacked, attackers could see when you are home or away based on device usage patterns, or even remotely control connected devices. This information could be used for burglary or stalking. Data could also be shared with third-party companies for marketing or analytics, building a profile of your lifestyle. In some cases, unsecured networks make it easier for unauthorized users to access smart plug information. Aggregated data could reveal intimate details about your daily life, work schedule, and personal habits.</p>
+                </div>
+
+                <h2>Types of Data Collected:</h2>
+                <ul>
+                    <li><strong>Power Usage:</strong> Energy consumption of connected devices, often in real-time</li>
+                    <li><strong>On/Off Schedules:</strong> Exactly when devices are activated or deactivated</li>
+                    <li><strong>Device Types:</strong> What kind of appliance is connected (lamp, coffee maker, TV)</li>
+                    <li><strong>App Interactions:</strong> How you control the plug through smartphone apps</li>
+                    <li><strong>IP Address:</strong> Your network identifier and approximate location</li>
+                    <li><strong>Location Data:</strong> If you use geofencing for automation</li>
+                    <li><strong>Historical Usage:</strong> Long-term patterns of device use</li>
+                    <li><strong>Wi-Fi Information:</strong> Network strength and connectivity status</li>
+                </ul>
+
+                <div class="tip-box">
+                    <h3><i class="fas fa-shield-alt" style="color: var(--success-green);"></i> How to Protect Your Privacy</h3>
+                    <ol>
+                        <li><strong>Use strong, unique Wi-Fi passwords:</strong> Secure your network with WPA3 encryption and a complex password.</li>
+                        <li><strong>Disable unnecessary remote access:</strong> If you don't need to control plugs away from home, turn off remote access features.</li>
+                        <li><strong>Keep firmware updated:</strong> Regular updates patch security vulnerabilities. Enable automatic updates if available.</li>
+                        <li><strong>Review app permissions:</strong> Check what data the plug's app can access on your phone and revoke unnecessary permissions.</li>
+                        <li><strong>Consider a separate network:</strong> Use a guest or IoT-specific Wi-Fi network for smart devices to isolate them from your main devices.</li>
+                        <li><strong>Opt out of data sharing:</strong> In app settings, disable any options that share usage data with third parties.</li>
+                        <li><strong>Use random schedules:</strong> If you're concerned about revealing patterns, use random or varied schedules rather than fixed times.</li>
+                        <li><strong>Check manufacturer privacy policy:</strong> Understand what data is collected and how it's used before purchasing.</li>
+                    </ol>
+                </div>
+
+                <h2>Energy Monitoring Features</h2>
+                <p>While energy monitoring can help reduce electricity bills, it also creates detailed data about your appliance usage. Consider whether you need real-time monitoring or if basic on/off control is sufficient. Some plugs allow you to disable energy tracking while keeping remote control functionality.</p>
+                
+                <h2>The Risk of Pattern Recognition</h2>
+                <p>Even seemingly innocuous data like when your lights turn on can reveal sensitive information. Machine learning algorithms can analyze usage patterns to predict when you're home, when you're sleeping, and even infer health issues based on changes in routine. Be aware that this data could be used in ways you didn't intend.</p>
+            </div>
+
+            <div class="post-navigation">
+                <a href="blog-security-camera.html" class="btn btn-outline"><i class="fas fa-arrow-left"></i> Previous: Security Cameras</a>
+                <a href="blogs.html" class="btn btn-outline">Back to Blog</a>
+                <a href="blog-smart-lock.html" class="btn btn-primary">Next: Smart Locks <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </article>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>SmartPrivacyHub</h4>
+                    <p>Empowering users to take control of their IoT privacy through education and actionable guides.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="blogs.html">Blog</a></li>
+                        <li><a href="guides.html">Privacy Guides</a></li>
+                        <li><a href="survey.html">Surveys</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@smartprivacyhub.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Manchester, UK</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 SmartPrivacyHub. All rights reserved. | Created by Asayel Hasan</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="jsmain.js"></script>
+</body>
+</html>
