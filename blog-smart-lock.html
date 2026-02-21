@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Lock Privacy - SmartPrivacyHub</title>
+    <link rel="stylesheet" href="cssstyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-shield-alt"></i>
+                <span class="logo-text">Smart<span>Privacy</span>Hub</span>
+            </a>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="blogs.html">Blog</a></li>
+                <li><a href="guides.html">Privacy Guides</a></li>
+                <li><a href="survey.html">Survey</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Privacy Blog</h1>
+            <p>In-depth analysis of IoT privacy risks</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <article class="blog-post">
+            <div class="blog-post-header">
+                <span class="blog-category">Security</span>
+                <h1>Smart Lock Privacy: Is Your Digital Key Secure?</h1>
+                <div class="post-meta">
+                    <span><i class="far fa-calendar"></i> November 22, 2025</span>
+                    <span class="read-time"><i class="far fa-clock"></i> 5 min read</span>
+                    <span><i class="far fa-user"></i> By Asayel Hasan</span>
+                </div>
+            </div>
+
+            <div class="post-content">
+                <h2>What Data Do Smart Locks Collect?</h2>
+                <p>Smart locks log entry and exit times, user profiles, and access codes. Some models use biometric data like fingerprints or facial recognition. All this data is often stored in the cloud or in connected apps, creating a permanent record of who enters your home and when. Advanced locks can track how long doors are open, which specific user entered, and even integrate with other smart home devices to record entry patterns.</p>
+
+                <h2>How Do They Track Access?</h2>
+                <p>Each entry is recorded, showing who entered your home and when. Notifications may be sent to your smartphone in real time. Some locks also maintain a history of failed attempts, including timestamps of when someone tried to enter unsuccessfully. This creates a comprehensive audit trail of all access to your home, which can be useful for security but also creates privacy concerns.</p>
+
+                <div class="risk-box">
+                    <h3><i class="fas fa-exclamation-triangle" style="color: var(--accent-red);"></i> What Are the Risks?</h3>
+                    <p>If hackers gain access to your lock system, they could unlock your home remotely. There have been instances of smart locks being hacked through vulnerable apps or weak encryption. Sharing access codes widely increases risk, as codes can be shared or forgotten. Stored biometric data (fingerprints, facial recognition) could be exposed if security systems fail, and unlike passwords, biometric data cannot be changed once compromised. Historical entry data could reveal when you're home, when you're away, and patterns of your daily life.</p>
+                </div>
+
+                <h2>Types of Data Collected:</h2>
+                <ul>
+                    <li><strong>Entry Logs:</strong> Every time someone enters or exits, with timestamps</li>
+                    <li><strong>User Profiles:</strong> Which code, key, or biometric was used</li>
+                    <li><strong>Access Codes:</strong> Temporary and permanent codes assigned to users</li>
+                    <li><strong>Biometric Data:</strong> Fingerprint templates or facial recognition data</li>
+                    <li><strong>Failed Attempts:</strong> Record of unsuccessful entry attempts</li>
+                    <li><strong>Battery Status:</strong> Power levels and low battery alerts</li>
+                    <li><strong>Connection Logs:</strong> When the lock connects to Wi-Fi or Bluetooth</li>
+                    <li><strong>App Activity:</strong> Remote commands and app interactions</li>
+                </ul>
+
+                <div class="tip-box">
+                    <h3><i class="fas fa-shield-alt" style="color: var(--success-green);"></i> How to Stay Safe</h3>
+                    <ol>
+                        <li><strong>Avoid sharing access codes unnecessarily:</strong> Only give codes to trusted individuals, and use temporary codes for guests or service providers that expire automatically.</li>
+                        <li><strong>Enable two-factor authentication:</strong> Essential for the app controlling your lock to prevent unauthorized account access.</li>
+                        <li><strong>Update lock firmware regularly:</strong> Manufacturers release security patches. Enable automatic updates if available.</li>
+                        <li><strong>Review access logs:</strong> Regularly check who has been entering your home and when. Investigate any suspicious entries.</li>
+                        <li><strong>Remove old users:</strong> When someone no longer needs access (ex-roommates, former cleaners), delete their codes immediately.</li>
+                        <li><strong>Use strong, unique passwords:</strong> Never reuse passwords across accounts. Use a password manager.</li>
+                        <li><strong>Consider encryption:</strong> Ensure your lock uses strong encryption for all communications.</li>
+                        <li><strong>Have a physical backup:</strong> Always have a traditional key as backup in case of electronic failure or hacking.</li>
+                        <li><strong>Disable remote access if not needed:</strong> If you don't need to control your lock from away, turn off remote features.</li>
+                    </ol>
+                </div>
+
+                <h2>Biometric Data Concerns</h2>
+                <p>Biometric locks offer convenience but come with significant privacy trade-offs. Fingerprint and facial recognition data is extremely sensitive and permanent. If this data is breached, you cannot change your fingerprints like you can change a password. Consider whether the convenience outweighs this risk, and ensure any biometric data is stored locally on the device, not in the cloud.</p>
+                
+                <h2>Temporary Access Management</h2>
+                <p>One advantage of smart locks is the ability to grant temporary access. Use this feature for house guests, cleaners, or maintenance workers. Set codes to expire after a specific time or number of uses. This limits long-term risk and ensures you don't have forgotten codes floating around.</p>
+                
+                <h2>Integration Risks</h2>
+                <p>Smart locks often integrate with other smart home systems like Alexa, Google Home, or IFTTT. Each integration creates another potential point of failure or data exposure. Consider whether you need these integrations, and review the privacy policies of all connected services.</p>
+            </div>
+
+            <div class="post-navigation">
+                <a href="blog-smart-plug.html" class="btn btn-outline"><i class="fas fa-arrow-left"></i> Previous: Smart Plugs</a>
+                <a href="blogs.html" class="btn btn-outline">Back to Blog</a>
+                <a href="blog-fitness-tracker.html" class="btn btn-primary">Next: Fitness Trackers <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </article>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>SmartPrivacyHub</h4>
+                    <p>Empowering users to take control of their IoT privacy through education and actionable guides.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="blogs.html">Blog</a></li>
+                        <li><a href="guides.html">Privacy Guides</a></li>
+                        <li><a href="survey.html">Surveys</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@smartprivacyhub.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Manchester, UK</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 SmartPrivacyHub. All rights reserved. | Created by Asayel Hasan</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="jsmain.js"></script>
+</body>
+</html>
