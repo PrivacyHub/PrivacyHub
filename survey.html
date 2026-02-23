@@ -3,15 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Survey - SmartPrivacyHub</title>
+    <title>Privacy Assessment - SmartPrivacyHub</title>
     <link rel="stylesheet" href="cssstyle.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .assessment-hero {
+            background: linear-gradient(135deg, #2C3E50 0%, #3498DB 100%);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .methodology-box {
+            background: var(--light-blue);
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+        
+        .survey-card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: var(--shadow);
+        }
+        
+        .progress-steps {
+            display: flex;
+            justify-content: space-between;
+            margin: 3rem 0;
+            position: relative;
+        }
+        
+        .progress-steps::before {
+            content: '';
+            position: absolute;
+            top: 25px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #ddd;
+            z-index: 1;
+        }
+        
+        .step {
+            position: relative;
+            z-index: 2;
+            background: white;
+            padding: 0 1rem;
+            text-align: center;
+        }
+        
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: var(--gray-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-weight: bold;
+            border: 2px solid #ddd;
+        }
+        
+        .step.active .step-number {
+            background: var(--secondary-blue);
+            color: white;
+            border-color: var(--secondary-blue);
+        }
+        
+        .step.completed .step-number {
+            background: var(--success-green);
+            color: white;
+            border-color: var(--success-green);
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: var(--accent-orange);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar">
         <div class="container nav-container">
             <a href="index.html" class="logo">
-                <img src="Image1.jpeg" alt="SmartPrivacyHub Logo" style="height: 40px; width: auto;">
+                <img src="images/1.png" alt="SmartPrivacyHub Logo" style="height: 40px; width: auto;">
                 <span class="logo-text">Smart<span>Privacy</span>Hub</span>
             </a>
             <div class="menu-toggle">
@@ -21,49 +106,164 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="blogs.html">Blog</a></li>
                 <li><a href="guides.html">Privacy Guides</a></li>
-                <li><a href="survey.html" class="active">Survey</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="survey.html" class="active">Assessment</a></li>
                 <li><a href="about.html">About</a></li>
             </ul>
         </div>
     </nav>
 
-    <section class="page-header">
+    <div class="assessment-hero">
         <div class="container">
-            <h1>Privacy Awareness Survey</h1>
-            <p>Help us understand your privacy knowledge and improve our platform</p>
+            <i class="fas fa-clipboard-check" style="font-size: 4rem; margin-bottom: 1rem;"></i>
+            <h1>IoT Privacy Assessment</h1>
+            <p>Measure your privacy awareness before and after using our resources</p>
         </div>
-    </section>
+    </div>
 
-    <section class="survey-section">
-        <div class="container">
-            <div class="survey-container">
-                <div class="survey-card">
-                    <i class="fas fa-clipboard-list" style="font-size: 3rem; color: var(--secondary-blue); margin-bottom: 1rem;"></i>
-                    <h3>Pre-Survey</h3>
-                    <p>Take this survey before exploring our content to help us understand your current privacy awareness level. Your responses will help us measure the effectiveness of our educational materials.</p>
-                    <p><strong>Topics covered:</strong> IoT privacy knowledge, awareness of data collection practices, current privacy habits</p>
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSeFN_u3AUsQY_zBw1f14uy4prZkUzqemrgrH4ncspqA-Ceimw/viewform" target="_blank" class="btn btn-primary" style="margin-top: 1rem;">
-                        Take Pre-Survey <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-                <div class="survey-card">
-                    <i class="fas fa-chart-line" style="font-size: 3rem; color: var(--accent-orange); margin-bottom: 1rem;"></i>
-                    <h3>Post-Survey</h3>
-                    <p>After exploring our guides and blog posts, take this survey to help us measure our impact and understand how much you've learned about IoT privacy.</p>
-                    <p><strong>Topics covered:</strong> Knowledge gained, behavior changes, platform effectiveness, suggestions for improvement</p>
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScO1NJI7JeC9GVS0MagGOKFTxmbz4unz3sCDqU-O8dCweSQ_g/viewform" target="_blank" class="btn btn-secondary" style="margin-top: 1rem;">
-                        Take Post-Survey <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
+    <div class="container">
+        <!-- Methodology Explanation -->
+        <div class="methodology-box">
+            <h3><i class="fas fa-flask"></i> Research Methodology</h3>
+            <p>To scientifically measure the effectiveness of our platform, we use a <strong>before-and-after assessment model</strong>:</p>
+            <ol style="margin: 1rem 0 1rem 2rem;">
+                <li><strong>Pre-Assessment:</strong> Test your current IoT privacy knowledge (5 minutes)</li>
+                <li><strong>Learning Phase:</strong> Explore our blogs, guides, and resources</li>
+                <li><strong>Post-Assessment:</strong> Retake the assessment to measure knowledge gain</li>
+                <li><strong>Feedback:</strong> Help us improve with your suggestions</li>
+            </ol>
+            <p><em>All responses are anonymous and used only for academic research at Manchester Metropolitan University.</em></p>
+        </div>
+
+        <!-- Progress Tracker -->
+        <div class="progress-steps">
+            <div class="step active">
+                <div class="step-number">1</div>
+                <p>Pre-Assessment</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <p>Learn</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <p>Post-Assessment</p>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <p>Feedback</p>
+            </div>
+        </div>
+
+        <!-- Pre-Assessment Card -->
+        <div class="survey-card">
+            <span class="badge">Step 1: Before Learning</span>
+            <h2><i class="fas fa-clipboard-list" style="color: var(--secondary-blue);"></i> IoT Privacy Pre-Assessment</h2>
+            <p>Take this 10-question assessment to establish your baseline knowledge of IoT privacy risks. Your responses help us understand common knowledge gaps.</p>
+            
+            <h3 style="margin-top: 1.5rem;">What this assessment measures:</h3>
+            <ul style="margin: 1rem 0 1.5rem 2rem;">
+                <li><strong>Section A:</strong> Understanding of IoT data collection (5 questions)</li>
+                <li><strong>Section B:</strong> Knowledge of privacy settings (3 questions)</li>
+                <li><strong>Section C:</strong> Awareness of privacy laws (2 questions)</li>
+            </ul>
+            
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeFN_u3AUsQY_zBw1f14uy4prZkUzqemrgrH4ncspqA-Ceimw/viewform" target="_blank" class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 2rem;">
+                <i class="fas fa-pencil-alt"></i> Take Pre-Assessment (10 mins)
+            </a>
+            <p style="margin-top: 1rem; color: #666;"><i class="fas fa-clock"></i> Estimated time: 10 minutes</p>
+        </div>
+
+        <!-- Learning Resources Section -->
+        <div class="survey-card">
+            <span class="badge">Step 2: Learn</span>
+            <h2><i class="fas fa-book-open" style="color: var(--success-green);"></i> Explore Our Resources</h2>
+            <p>After completing the pre-assessment, explore these resources to improve your IoT privacy knowledge:</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin: 2rem 0;">
+                <a href="guides.html" style="text-decoration: none;">
+                    <div style="background: var(--light-blue); padding: 1.5rem; border-radius: 10px; text-align: center;">
+                        <i class="fas fa-list-ol" style="font-size: 2rem; color: var(--secondary-blue);"></i>
+                        <h4>Privacy Guides</h4>
+                        <p>Step-by-step device settings</p>
+                    </div>
+                </a>
+                <a href="blogs.html" style="text-decoration: none;">
+                    <div style="background: var(--light-blue); padding: 1.5rem; border-radius: 10px; text-align: center;">
+                        <i class="fas fa-blog" style="font-size: 2rem; color: var(--secondary-blue);"></i>
+                        <h4>Blog Articles</h4>
+                        <p>In-depth privacy explanations</p>
+                    </div>
+                </a>
+                <a href="resources.html" style="text-decoration: none;">
+                    <div style="background: var(--light-blue); padding: 1.5rem; border-radius: 10px; text-align: center;">
+                        <i class="fas fa-download" style="font-size: 2rem; color: var(--secondary-blue);"></i>
+                        <h4>Downloadable Guides</h4>
+                        <p>Printable checklists</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Post-Assessment Card -->
+        <div class="survey-card">
+            <span class="badge">Step 3: After Learning</span>
+            <h2><i class="fas fa-chart-line" style="color: var(--accent-orange);"></i> IoT Privacy Post-Assessment</h2>
+            <p>After exploring our resources, retake the assessment to measure how much you've learned. Your improved score helps us evaluate our platform's effectiveness.</p>
+            
+            <h3 style="margin-top: 1.5rem;">What we measure:</h3>
+            <ul style="margin: 1rem 0 1.5rem 2rem;">
+                <li>Knowledge improvement from pre to post-assessment</li>
+                <li>Specific areas where learning occurred</li>
+                <li>Effectiveness of different resource types</li>
+            </ul>
+            
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScO1NJI7JeC9GVS0MagGOKFTxmbz4unz3sCDqU-O8dCweSQ_g/viewform" target="_blank" class="btn btn-secondary" style="font-size: 1.1rem; padding: 1rem 2rem;">
+                <i class="fas fa-chart-line"></i> Take Post-Assessment (10 mins)
+            </a>
+        </div>
+
+        <!-- Feedback Card -->
+        <div class="survey-card">
+            <span class="badge">Step 4: Feedback</span>
+            <h2><i class="fas fa-comments" style="color: var(--primary-blue);"></i> Platform Feedback</h2>
+            <p>Help us improve SmartPrivacyHub by sharing your experience. Your feedback directly influences future updates.</p>
+            
+            <div style="background: var(--gray-bg); padding: 1.5rem; border-radius: 10px; margin: 1.5rem 0;">
+                <h4>Feedback Questions:</h4>
+                <ul>
+                    <li>Was the content easy to understand?</li>
+                    <li>Which resources were most helpful?</li>
+                    <li>What topics should we add?</li>
+                    <li>Were the downloadable guides useful?</li>
+                    <li>Any suggestions for improvement?</li>
+                </ul>
             </div>
             
-            <div style="margin-top: 3rem; padding: 2rem; background: var(--white); border-radius: 10px;">
-                <h3>About Our Research</h3>
-                <p>These surveys are part of an academic research project at Manchester Metropolitan University to evaluate the effectiveness of privacy education platforms. Your responses are anonymous and will only be used to improve privacy awareness resources. No personal identifying information is collected.</p>
-                <p><i class="fas fa-lock" style="color: var(--success-green);"></i> All responses are encrypted and handled in accordance with GDPR guidelines.</p>
-            </div>
+            <a href="#" class="btn btn-outline" onclick="alert('Demo: Feedback form would open here.')">
+                <i class="fas fa-comment"></i> Provide Feedback
+            </a>
         </div>
-    </section>
+
+        <!-- Results Summary (Demo) -->
+        <div class="methodology-box" style="background: var(--white); border: 2px dashed var(--secondary-blue);">
+            <h3><i class="fas fa-chart-pie"></i> Research Results (Demo)</h3>
+            <p>Based on initial user testing:</p>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 1rem;">
+                <div>
+                    <h4>Pre-Assessment Average:</h4>
+                    <p style="font-size: 2rem; color: var(--accent-red);">48%</p>
+                    <p>Baseline knowledge</p>
+                </div>
+                <div>
+                    <h4>Post-Assessment Average:</h4>
+                    <p style="font-size: 2rem; color: var(--success-green);">76%</p>
+                    <p>After using platform</p>
+                </div>
+            </div>
+            <p><strong>Improvement: +28%</strong> in IoT privacy awareness</p>
+        </div>
+    </div>
 
     <footer class="footer">
         <div class="container">
@@ -77,8 +277,8 @@
                     <ul>
                         <li><a href="blogs.html">Blog</a></li>
                         <li><a href="guides.html">Privacy Guides</a></li>
-                        <li><a href="survey.html">Surveys</a></li>
-                        <li><a href="about.html">About</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                        <li><a href="survey.html">Assessment</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
