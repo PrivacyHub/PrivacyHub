@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Home Privacy Guide - SmartPrivacyHub</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .guide-hero {
+            background: linear-gradient(135deg, #4285F4 0%, #34A853 100%);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .guide-hero i {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: rgba(255,255,255,0.2);
+            padding: 1rem;
+            border-radius: 50%;
+        }
+        
+        .guide-section {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: var(--shadow);
+        }
+        
+        .step-card {
+            background: var(--light-blue);
+            border-left: 4px solid var(--secondary-blue);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 5px;
+        }
+        
+        .step-number {
+            background: var(--secondary-blue);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            font-weight: bold;
+        }
+        
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 5px;
+        }
+        
+        .tip-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 5px;
+        }
+        
+        .device-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .device-item {
+            background: var(--gray-bg);
+            padding: 1rem;
+            border-radius: 5px;
+            text-align: center;
+        }
+        
+        .device-item i {
+            font-size: 2rem;
+            color: var(--secondary-blue);
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="images/1.png" alt="SmartPrivacyHub Logo" style="height: 40px; width: auto;">
+                <span class="logo-text">Smart<span>Privacy</span>Hub</span>
+            </a>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="blogs.html">Blog</a></li>
+                <li><a href="guides.html" class="active">Privacy Guides</a></li>
+                <li><a href="survey.html">Survey</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="guide-hero">
+        <div class="container">
+            <i class="fab fa-google"></i>
+            <h1>Google Home Privacy Guide</h1>
+            <p>Complete guide to securing your Google Assistant and protecting your data</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="guide-section">
+            <h2><i class="fas fa-database" style="color: var(--secondary-blue);"></i> What Data Does Google Home Collect?</h2>
+            <p>Google Home devices collect various types of data through your interactions with Google Assistant.</p>
+            
+            <div class="device-list">
+                <div class="device-item">
+                    <i class="fas fa-microphone"></i>
+                    <h4>Voice Commands</h4>
+                    <p>All interactions with Google Assistant</p>
+                </div>
+                <div class="device-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h4>Location History</h4>
+                    <p>Your home and work addresses</p>
+                </div>
+                <div class="device-item">
+                    <i class="fas fa-calendar"></i>
+                    <h4>Calendar Events</h4>
+                    <p>If you sync your calendar</p>
+                </div>
+                <div class="device-item">
+                    <i class="fas fa-youtube"></i>
+                    <h4>Watch History</h4>
+                    <p>On devices with screens</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="guide-section">
+            <h2><i class="fas fa-list-ol" style="color: var(--secondary-blue);"></i> Step-by-Step Privacy Settings</h2>
+            
+            <div class="step-card">
+                <h3><span class="step-number">1</span> Review and Delete Google Assistant Activity</h3>
+                <ol>
+                    <li>Open the Google Home app on your smartphone</li>
+                    <li>Tap on your profile picture (top right)</li>
+                    <li>Select "Google Assistant settings"</li>
+                    <li>Tap on "Your data in the Assistant"</li>
+                    <li>Select "Assistant activity" to view all recordings</li>
+                    <li>To delete:
+                        <ul>
+                            <li>Tap the "X" next to individual items</li>
+                            <li>Use "Delete activity by" to delete by date range</li>
+                            <li>Choose "Delete all time" to clear everything</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+
+            <div class="step-card">
+                <h3><span class="step-number">2</span> Set Up Auto-Delete for Activity</h3>
+                <ol>
+                    <li>Go to "Your data in the Assistant"</li>
+                    <li>Tap on "Activity controls"</li>
+                    <li>Find "Web & App Activity"</li>
+                    <li>Tap on "Auto-delete"</li>
+                    <li>Choose your preference:
+                        <ul>
+                            <li>Auto-delete after 3 months</li>
+                            <li>Auto-delete after 18 months</li>
+                            <li>Auto-delete after 36 months</li>
+                        </ul>
+                    </li>
+                    <li>Confirm your selection</li>
+                </ol>
+                <div class="tip-box">
+                    <i class="fas fa-info-circle"></i> <strong>Tip:</strong> Setting auto-delete to 3 months balances functionality with privacy.
+                </div>
+            </div>
+
+            <div class="step-card">
+                <h3><span class="step-number">3</span> Disable Personalized Ads</h3>
+                <ol>
+                    <li>Visit myactivity.google.com on your browser</li>
+                    <li>Go to "Activity controls"</li>
+                    <li>Find "Ad personalization"</li>
+                    <li>Toggle it OFF</li>
+                    <li>Confirm your choice</li>
+                </ol>
+                <div class="warning-box">
+                    <i class="fas fa-exclamation-triangle"></i> This prevents Google from using your activity to personalize ads across Google services.
+                </div>
+            </div>
+
+            <div class="step-card">
+                <h3><span class="step-number">4</span> Manage Voice Match and Recognition</h3>
+                <ol>
+                    <li>In Google Home app, tap your device</li>
+                    <li>Tap Settings (gear icon)</li>
+                    <li>Select "Recognition & sharing"</li>
+                    <li>Review "Voice Match" settings</li>
+                    <li>You can:
+                        <ul>
+                            <li>Remove voice models</li>
+                            <li>Disable personalized results</li>
+                            <li>Turn off "Hey Google" sensitivity</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="guide-section">
+            <h2><i class="fas fa-shield-alt" style="color: var(--secondary-blue);"></i> Quick Privacy Checklist</h2>
+            <div class="device-list">
+                <div class="device-item">
+                    <i class="fas fa-check-circle" style="color: #28a745;"></i>
+                    <h4>Activity Auto-Delete</h4>
+                    <p>Set to 3 months</p>
+                </div>
+                <div class="device-item">
+                    <i class="fas fa-check-circle" style="color: #28a745;"></i>
+                    <h4>Personalized Ads</h4>
+                    <p>Disabled</p>
+                </div>
+                <div class="device-item">
+                    <i class="fas fa-check-circle" style="color: #28a745;"></i>
+                    <h4>Voice Match</h4>
+                    <p>Configured properly</p>
+                </div>
+                <div class="device-item">
+                    <i class="fas fa-check-circle" style="color: #28a745;"></i>
+                    <h4>Activity Review</h4>
+                    <p>Regularly checked</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin: 3rem 0;">
+            <a href="guide-alexa.html" class="btn btn-primary"><i class="fas fa-arrow-left"></i> Previous: Alexa Guide</a>
+            <a href="guides.html" class="btn btn-outline">All Guides</a>
+            <a href="guide-smart-tv.html" class="btn btn-secondary">Next: Smart TV Guide <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>SmartPrivacyHub</h4>
+                    <p>Empowering users to take control of their IoT privacy through education and actionable guides.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="blogs.html">Blog</a></li>
+                        <li><a href="guides.html">Privacy Guides</a></li>
+                        <li><a href="survey.html">Surveys</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@smartprivacyhub.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Manchester, UK</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 SmartPrivacyHub. All rights reserved. | Created by Asayel Hasan</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
