@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Camera Privacy Guide - SmartPrivacyHub</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .guide-hero {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .guide-hero i {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: rgba(255,255,255,0.2);
+            padding: 1rem;
+            border-radius: 50%;
+        }
+        
+        .guide-section {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: var(--shadow);
+        }
+        
+        .brand-tabs {
+            display: flex;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .brand-tab {
+            padding: 1rem 2rem;
+            background: var(--gray-bg);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .brand-tab:hover, .brand-tab.active {
+            background: var(--secondary-blue);
+            color: white;
+        }
+        
+        .brand-content {
+            display: none;
+            padding: 2rem;
+            background: var(--light-blue);
+            border-radius: 10px;
+        }
+        
+        .brand-content.active {
+            display: block;
+        }
+        
+        .step-card {
+            background: white;
+            border-left: 4px solid var(--secondary-blue);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 5px;
+        }
+        
+        .step-number {
+            background: var(--secondary-blue);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            font-weight: bold;
+        }
+        
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 5px;
+        }
+        
+        .tip-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 5px;
+        }
+        
+        .danger-box {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 5px;
+        }
+        
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .data-item {
+            background: var(--gray-bg);
+            padding: 1rem;
+            border-radius: 5px;
+            text-align: center;
+            border-bottom: 3px solid var(--secondary-blue);
+        }
+        
+        .data-item i {
+            font-size: 2rem;
+            color: var(--secondary-blue);
+            margin-bottom: 0.5rem;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+        }
+        
+        .comparison-table th {
+            background: var(--secondary-blue);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+        }
+        
+        .comparison-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .comparison-table tr:hover {
+            background: var(--light-blue);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="images/1.png" alt="SmartPrivacyHub Logo" style="height: 40px; width: auto;">
+                <span class="logo-text">Smart<span>Privacy</span>Hub</span>
+            </a>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="blogs.html">Blog</a></li>
+                <li><a href="guides.html" class="active">Privacy Guides</a></li>
+                <li><a href="survey.html">Survey</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="guide-hero">
+        <div class="container">
+            <i class="fas fa-video"></i>
+            <h1>Security Camera Privacy Guide</h1>
+            <p>Secure your camera feeds, enable 2FA, and choose between cloud and local storage</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="guide-section">
+            <h2><i class="fas fa-database" style="color: var(--secondary-blue);"></i> What Data Do Security Cameras Collect?</h2>
+            <p>Security cameras capture highly sensitive footage of your home, family, and daily activities.</p>
+            
+            <div class="data-grid">
+                <div class="data-item">
+                    <i class="fas fa-video"></i>
+                    <h4>Video Footage</h4>
+                    <p>Continuous or motion-activated recordings</p>
+                </div>
+                <div class="data-item">
+                    <i class="fas fa-microphone"></i>
+                    <h4>Audio Recordings</h4>
+                    <p>Conversations and sounds</p>
+                </div>
+                <div class="data-item">
+                    <i class="fas fa-clock"></i>
+                    <h4>Motion Alerts</h4>
+                    <p>Timestamps and patterns</p>
+                </div>
+                <div class="data-item">
+                    <i class="fas fa-face-smile"></i>
+                    <h4>Facial Recognition</h4>
+                    <p>If enabled, data about familiar faces</p>
+                </div>
+            </div>
+
+            <div class="danger-box">
+                <i class="fas fa-exclamation-triangle"></i>
+                <h3>Critical Security Risks</h3>
+                <p>Hackers have been known to access unsecured camera feeds. There have been numerous cases of strangers accessing live feeds, watching private moments, and even speaking through cameras. Always secure your devices properly.</p>
+            </div>
+        </div>
+
+        <div class="guide-section">
+            <h2><i class="fas fa-list-ol" style="color: var(--secondary-blue);"></i> Privacy Settings by Brand</h2>
+            
+            <div class="brand-tabs">
+                <button class="brand-tab active" onclick="showBrand('ring')">Ring</button>
+                <button class="brand-tab" onclick="showBrand('arlo')">Arlo</button>
+                <button class="brand-tab" onclick="showBrand('wyze')">Wyze</button>
+            </div>
+
+            <div id="ring" class="brand-content active">
+                <h3>Ring Camera Privacy Settings</h3>
+                
+                <div class="step-card">
+                    <h4><span class="step-number">1</span> Enable Two-Factor Authentication</h4>
+                    <ol>
+                        <li>Open Ring app</li>
+                        <li>Tap the three lines (menu) top left</li>
+                        <li>Select "Account" → "Security"</li>
+                        <li>Enable "Two-Step Verification"</li>
+                        <li>Follow setup instructions</li>
+                    </ol>
+                </div>
+
+                <div class="step-card">
+                    <h4><span class="step-number">2</span> Set Up Privacy Zones</h4>
+                    <ol>
+                        <li>Select your camera in the app</li>
+                        <li>Tap "Device Settings" → "Privacy Zones"</li>
+                        <li>Create zones to block recording of:
+                            <ul>
+                                <li>Neighbors' property</li>
+                                <li>Public sidewalks</li>
+                                <li>Windows of neighboring homes</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="step-card">
+                    <h4><span class="step-number">3</span> Disable Shared Access</h4>
+                    <ol>
+                        <li>Go to "Account" → "Shared Users"</li>
+                        <li>Review who has access</li>
+                        <li>Remove any unnecessary users</li>
+                    </ol>
+                </div>
+
+                <div class="step-card">
+                    <h4><span class="step-number">4</span> Control Video Storage</h4>
+                    <ol>
+                        <li>In "Device Settings"</li>
+                        <li>Select "Video Recording"</li>
+                        <li>Adjust recording length and frequency</li>
+                        <li>Review and delete old videos regularly</li>
+                    </ol>
+                </div>
+
+                <div class="warning-box">
+                    <i class="fas fa-info-circle"></i>
+                    <h4>Ring & Law Enforcement</h4>
+                    <p>Ring has partnerships with law enforcement. Review settings related to "Neighbors" app and disable any automatic sharing with police.</p>
+                </div>
+            </div>
+
+            <div id="arlo" class="brand-content">
+                <h3>Arlo Camera Privacy Settings</h3>
+                
+                <div class="step-card">
+                    <h4><span class="step-number">1</span> Enable 2FA</h4>
+                    <ol>
+                        <li>Open Arlo app</li>
+                        <li>Go to "Settings" → "Security"</li>
+                        <li>Enable "Two-Factor Authentication"</li>
+                    </ol>
+                </div>
+
+                <div class="step-card">
+                    <h4><span class="step-number">2</span> Set Up Activity Zones</h4>
+                    <ol>
+                        <li>Select camera → "Settings"</li>
+                        <li>Choose "Activity Zones"</li>
+                        <li>Draw zones to monitor specific areas</li>
+                        <li>This reduces unnecessary recordings</li>
+                    </ol>
+                </div>
+
+                <div class="step-card">
+                    <h4><span class="step-number">3</span> Manage Cloud Storage</h4>
+                    <ol>
+                        <li>Go to "Settings" → "Storage"</li>
+                        <li>Review cloud recording settings</li>
+                        <li>Set shorter retention periods</li>
+                        <li>Consider local storage with Arlo SmartHub</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div id="wyze" class="brand-content">
+                <h3>Wyze Camera Privacy Settings</h3>
+                
+                <div class="step-card">
+                    <h4><span class="step-number">1</span> Enable 2FA</h4>
+                    <ol>
+                        <li>Open Wyze app</li>
+                        <li>Go to "Account" → "Security"</li>
+                        <li>Enable "Two-Step Verification"</li>
+                    </ol>
+                </div>
+
+                <div class="step-card">
+                    <h4><span class="step-number">2</span> Use Local Storage</h4>
+                    <ol>
+                        <li>Insert microSD card in camera</li>
+                        <li>In app, go to camera settings</li>
+                        <li>Select "Advanced Settings"</li>
+                        <li>Enable "Local Recording"</li>
+                        <li>Disable cloud recording if not needed</li>
+                    </ol>
+                </div>
+
+                <div class="step-card">
+                    <h4><span class="step-number">3</span> Set Up Privacy Mode</h4>
+                    <ol>
+                        <li>In camera settings</li>
+                        <li>Enable "Privacy Mode" when home</li>
+                        <li>Camera will stop recording until disabled</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="guide-section">
+            <h2><i class="fas fa-cloud" style="color: var(--secondary-blue);"></i> Cloud vs Local Storage</h2>
+            
+            <table class="comparison-table">
+                <tr>
+                    <th>Feature</th>
+                    <th>Cloud Storage</th>
+                    <th>Local Storage</th>
+                </tr>
+                <tr>
+                    <td>Accessibility</td>
+                    <td>Access from anywhere</td>
+                    <td>Local network only</td>
+                </tr>
+                <tr>
+                    <td>Security</td>
+                    <td>Depends on provider's security</td>
+                    <td>You control security</td>
+                </tr>
+                <tr>
+                    <td>Monthly Cost</td>
+                    <td>Usually subscription fee</td>
+                    <td>One-time hardware cost</td>
+                </tr>
+                <tr>
+                    <td>Privacy</td>
+                    <td>Provider may access footage</td>
+                    <td>Complete privacy</td>
+                </tr>
+                <tr>
+                    <td>Backup</td>
+                    <td>Automatic cloud backup</td>
+                    <td>Risk of physical damage</td>
+                </tr>
+            </table>
+
+            <div class="tip-box">
+                <i class="fas fa-lightbulb"></i>
+                <h4>Recommendation</h4>
+                <p>For maximum privacy, use local storage with encryption. If you need remote access, consider a hybrid approach with encrypted cloud storage and strong security settings.</p>
+            </div>
+        </div>
+
+        <div class="guide-section">
+            <h2><i class="fas fa-shield-alt" style="color: var(--secondary-blue);"></i> Universal Security Tips</h2>
+            
+            <div class="tip-box">
+                <i class="fas fa-key"></i>
+                <h4>Account Security</h4>
+                <ul>
+                    <li><strong>Change default passwords immediately</strong> - never keep default credentials</li>
+                    <li><strong>Enable two-factor authentication</strong> on every camera account</li>
+                    <li><strong>Use unique passwords</strong> for each camera system</li>
+                    <li><strong>Regularly review who has access</strong> to your cameras</li>
+                </ul>
+            </div>
+
+            <div class="tip-box">
+                <i class="fas fa-wifi"></i>
+                <h4>Network Security</h4>
+                <ul>
+                    <li><strong>Use a separate Wi-Fi network</strong> for IoT devices (guest network)</li>
+                    <li><strong>Enable WPA3 encryption</strong> on your router</li>
+                    <li><strong>Regularly update router firmware</strong></li>
+                    <li><strong>Disable UPnP</strong> on your router to prevent automatic port forwarding</li>
+                </ul>
+            </div>
+
+            <div class="tip-box">
+                <i class="fas fa-camera"></i>
+                <h4>Physical Security</h4>
+                <ul>
+                    <li><strong>Position cameras carefully</strong> - avoid pointing at neighbors' property</li>
+                    <li><strong>Cover cameras when not needed</strong> for indoor privacy</li>
+                    <li><strong>Inform visitors</strong> about camera recording (check local laws)</li>
+                    <li><strong>Regularly check camera positioning</strong> hasn't been tampered with</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="guide-section">
+            <h2><i class="fas fa-check-circle" style="color: var(--secondary-blue);"></i> Privacy Checklist</h2>
+            <div class="data-grid">
+                <div class="data-item">
+                    <i class="fas fa-check-circle" style="color: #28a745;"></i>
+                    <h4>2FA Enabled</h4>
+                    <p>On all accounts</p>
+                </div>
+                <div class="data-item">
+                    <i class="fas fa-check-circle" style="color: #28a745;"></i>
+                    <h4>Default Password</h4>
+                    <p>Changed</p>
+                </div>
+                <div class="data-item">
+                    <i class="fas fa-check-circle" style="color: #28a745;"></i>
+                    <h4>Privacy Zones</h4>
+                    <p>Configured</p>
+                </div>
+                <div class="data-item">
+                    <i class="fas fa-check-circle" style="color: #28a745;"></i>
+                    <h4>Firmware</h4>
+                    <p>Up to date</p>
+                </div>
+                <div class="data-item">
+                    <i class="fas fa-check-circle" style="color: #28a745;"></i>
+                    <h4>Guest Network</h4>
+                    <p>IoT devices isolated</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin: 3rem 0;">
+            <a href="guide-thermostat.html" class="btn btn-primary"><i class="fas fa-arrow-left"></i> Previous: Smart Thermostats</a>
+            <a href="guides.html" class="btn btn-outline">All Guides</a>
+            <a href="blogs.html" class="btn btn-secondary">Read Related Blog <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+
+    <script>
+        function showBrand(brand) {
+            // Hide all brand content
+            document.querySelectorAll('.brand-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.brand-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected brand
+            document.getElementById(brand).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+    </script>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>SmartPrivacyHub</h4>
+                    <p>Empowering users to take control of their IoT privacy through education and actionable guides.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="blogs.html">Blog</a></li>
+                        <li><a href="guides.html">Privacy Guides</a></li>
+                        <li><a href="survey.html">Surveys</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@smartprivacyhub.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Manchester, UK</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 SmartPrivacyHub. All rights reserved. | Created by Asayel Hasan</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
