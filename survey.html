@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Assessment - SmartPrivacyHub</title>
-    <link rel="stylesheet" href="cssstyle.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         .assessment-hero {
@@ -29,17 +29,20 @@
             box-shadow: var(--shadow);
         }
         
+        /* Progress Steps - Updated for buttons */
         .progress-steps {
             display: flex;
             justify-content: space-between;
             margin: 3rem 0;
             position: relative;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
         
         .progress-steps::before {
             content: '';
             position: absolute;
-            top: 25px;
+            top: 35px;
             left: 0;
             right: 0;
             height: 2px;
@@ -47,37 +50,89 @@
             z-index: 1;
         }
         
-        .step {
+        .step-btn {
             position: relative;
             z-index: 2;
             background: white;
+            border: none;
+            cursor: pointer;
             padding: 0 1rem;
             text-align: center;
+            transition: var(--transition);
+            flex: 1;
+            min-width: 120px;
+        }
+        
+        .step-btn:hover .step-number {
+            transform: scale(1.1);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
         
         .step-number {
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             background: var(--gray-bg);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 1rem;
+            margin: 0 auto 0.5rem;
             font-weight: bold;
-            border: 2px solid #ddd;
+            font-size: 1.2rem;
+            border: 3px solid #ddd;
+            transition: var(--transition);
         }
         
-        .step.active .step-number {
+        .step-label {
+            font-weight: 600;
+            color: var(--dark-text);
+            font-size: 0.9rem;
+        }
+        
+        /* Step States */
+        .step-btn.active .step-number {
             background: var(--secondary-blue);
             color: white;
             border-color: var(--secondary-blue);
+            animation: pulse 2s infinite;
         }
         
-        .step.completed .step-number {
+        .step-btn.completed .step-number {
             background: var(--success-green);
             color: white;
             border-color: var(--success-green);
+        }
+        
+        .step-btn.completed .step-number::after {
+            content: '✓';
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+        
+        .step-btn.completed .step-number span {
+            display: none;
+        }
+        
+        .step-btn.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .step-btn.disabled:hover .step-number {
+            transform: none;
+            box-shadow: none;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(52, 152, 219, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(52, 152, 219, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(52, 152, 219, 0);
+            }
         }
         
         .badge {
@@ -89,6 +144,25 @@
             font-size: 0.8rem;
             font-weight: 600;
             margin-bottom: 1rem;
+        }
+        
+        .survey-status {
+            text-align: center;
+            margin: 1rem 0;
+            padding: 1rem;
+            background: var(--gray-bg);
+            border-radius: 5px;
+        }
+        
+        .reset-progress {
+            color: var(--secondary-blue);
+            cursor: pointer;
+            text-decoration: underline;
+            font-size: 0.9rem;
+        }
+        
+        .reset-progress:hover {
+            color: var(--primary-blue);
         }
     </style>
 </head>
@@ -107,7 +181,9 @@
                 <li><a href="blogs.html">Blog</a></li>
                 <li><a href="guides.html">Privacy Guides</a></li>
                 <li><a href="resources.html">Resources</a></li>
-                <li><a href="survey.html" class="active">Survey</a></li>
+                <li><a href="infographics.html">Data Visuals</a></li>
+                <li><a href="survey.html" class="active">Assessment</a></li>
+                <li><a href="changelog.html">Updates</a></li>
                 <li><a href="about.html">About</a></li>
             </ul>
         </div>
@@ -135,28 +211,37 @@
             <p><em>All responses are anonymous and used only for academic research at Manchester Metropolitan University.</em></p>
         </div>
 
-        <!-- Progress Tracker -->
-        <div class="progress-steps">
-            <div class="step active">
-                <div class="step-number">1</div>
-                <p>Pre-Assessment</p>
-            </div>
-            <div class="step">
-                <div class="step-number">2</div>
-                <p>Learn</p>
-            </div>
-            <div class="step">
-                <div class="step-number">3</div>
-                <p>Post-Assessment</p>
-            </div>
-            <div class="step">
-                <div class="step-number">4</div>
-                <p>Feedback</p>
-            </div>
+        <!-- Progress Tracker - Active Buttons -->
+        <div class="progress-steps" id="progressSteps">
+            <button class="step-btn active" onclick="setActiveStep(1)" id="step1">
+                <div class="step-number"><span>1</span></div>
+                <div class="step-label">Pre-Assessment</div>
+            </button>
+            
+            <button class="step-btn disabled" onclick="setActiveStep(2)" id="step2" disabled>
+                <div class="step-number"><span>2</span></div>
+                <div class="step-label">Learn</div>
+            </button>
+            
+            <button class="step-btn disabled" onclick="setActiveStep(3)" id="step3" disabled>
+                <div class="step-number"><span>3</span></div>
+                <div class="step-label">Post-Assessment</div>
+            </button>
+            
+            <button class="step-btn disabled" onclick="setActiveStep(4)" id="step4" disabled>
+                <div class="step-number"><span>4</span></div>
+                <div class="step-label">Feedback</div>
+            </button>
+        </div>
+
+        <!-- Current Step Status -->
+        <div class="survey-status" id="statusMessage">
+            <p><strong>Current Step:</strong> <span id="currentStepText">Pre-Assessment</span> - Complete this step to unlock the next one.</p>
+            <p><small>Your progress is saved in your browser. <span class="reset-progress" onclick="resetProgress()">Reset Progress</span></small></p>
         </div>
 
         <!-- Pre-Assessment Card -->
-        <div class="survey-card">
+        <div class="survey-card" id="preCard">
             <span class="badge">Step 1: Before Learning</span>
             <h2><i class="fas fa-clipboard-list" style="color: var(--secondary-blue);"></i> IoT Privacy Pre-Assessment</h2>
             <p>Take this 10-question assessment to establish your baseline knowledge of IoT privacy risks. Your responses help us understand common knowledge gaps.</p>
@@ -168,45 +253,56 @@
                 <li><strong>Section C:</strong> Awareness of privacy laws (2 questions)</li>
             </ul>
             
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeFN_u3AUsQY_zBw1f14uy4prZkUzqemrgrH4ncspqA-Ceimw/viewform" target="_blank" class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 2rem;">
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeFN_u3AUsQY_zBw1f14uy4prZkUzqemrgrH4ncspqA-Ceimw/viewform" target="_blank" class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 2rem;" onclick="completeStep(1)">
                 <i class="fas fa-pencil-alt"></i> Take Pre-Assessment (10 mins)
             </a>
             <p style="margin-top: 1rem; color: #666;"><i class="fas fa-clock"></i> Estimated time: 10 minutes</p>
         </div>
 
         <!-- Learning Resources Section -->
-        <div class="survey-card">
+        <div class="survey-card" id="learnCard" style="display: none;">
             <span class="badge">Step 2: Learn</span>
             <h2><i class="fas fa-book-open" style="color: var(--success-green);"></i> Explore Our Resources</h2>
             <p>After completing the pre-assessment, explore these resources to improve your IoT privacy knowledge:</p>
             
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin: 2rem 0;">
-                <a href="guides.html" style="text-decoration: none;">
+                <a href="guides.html" style="text-decoration: none;" onclick="trackLearning('guides')">
                     <div style="background: var(--light-blue); padding: 1.5rem; border-radius: 10px; text-align: center;">
                         <i class="fas fa-list-ol" style="font-size: 2rem; color: var(--secondary-blue);"></i>
                         <h4>Privacy Guides</h4>
                         <p>Step-by-step device settings</p>
                     </div>
                 </a>
-                <a href="blogs.html" style="text-decoration: none;">
+                <a href="blogs.html" style="text-decoration: none;" onclick="trackLearning('blogs')">
                     <div style="background: var(--light-blue); padding: 1.5rem; border-radius: 10px; text-align: center;">
                         <i class="fas fa-blog" style="font-size: 2rem; color: var(--secondary-blue);"></i>
                         <h4>Blog Articles</h4>
                         <p>In-depth privacy explanations</p>
                     </div>
                 </a>
-                <a href="resources.html" style="text-decoration: none;">
+                <a href="resources.html" style="text-decoration: none;" onclick="trackLearning('resources')">
                     <div style="background: var(--light-blue); padding: 1.5rem; border-radius: 10px; text-align: center;">
                         <i class="fas fa-download" style="font-size: 2rem; color: var(--secondary-blue);"></i>
                         <h4>Downloadable Guides</h4>
                         <p>Printable checklists</p>
                     </div>
                 </a>
+                <a href="infographics.html" style="text-decoration: none;" onclick="trackLearning('infographics')">
+                    <div style="background: var(--light-blue); padding: 1.5rem; border-radius: 10px; text-align: center;">
+                        <i class="fas fa-chart-pie" style="font-size: 2rem; color: var(--secondary-blue);"></i>
+                        <h4>Data Visuals</h4>
+                        <p>Privacy statistics and charts</p>
+                    </div>
+                </a>
             </div>
+            
+            <button class="btn btn-secondary" onclick="completeStep(2)" style="margin-top: 1rem;">
+                <i class="fas fa-check"></i> I've Finished Learning
+            </button>
         </div>
 
         <!-- Post-Assessment Card -->
-        <div class="survey-card">
+        <div class="survey-card" id="postCard" style="display: none;">
             <span class="badge">Step 3: After Learning</span>
             <h2><i class="fas fa-chart-line" style="color: var(--accent-orange);"></i> IoT Privacy Post-Assessment</h2>
             <p>After exploring our resources, retake the assessment to measure how much you've learned. Your improved score helps us evaluate our platform's effectiveness.</p>
@@ -218,13 +314,13 @@
                 <li>Effectiveness of different resource types</li>
             </ul>
             
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLScO1NJI7JeC9GVS0MagGOKFTxmbz4unz3sCDqU-O8dCweSQ_g/viewform" target="_blank" class="btn btn-secondary" style="font-size: 1.1rem; padding: 1rem 2rem;">
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScO1NJI7JeC9GVS0MagGOKFTxmbz4unz3sCDqU-O8dCweSQ_g/viewform" target="_blank" class="btn btn-secondary" style="font-size: 1.1rem; padding: 1rem 2rem;" onclick="completeStep(3)">
                 <i class="fas fa-chart-line"></i> Take Post-Assessment (10 mins)
             </a>
         </div>
 
         <!-- Feedback Card -->
-        <div class="survey-card">
+        <div class="survey-card" id="feedbackCard" style="display: none;">
             <span class="badge">Step 4: Feedback</span>
             <h2><i class="fas fa-comments" style="color: var(--primary-blue);"></i> Platform Feedback</h2>
             <p>Help us improve SmartPrivacyHub by sharing your experience. Your feedback directly influences future updates.</p>
@@ -240,30 +336,143 @@
                 </ul>
             </div>
             
-            <a href="#" class="btn btn-outline" onclick="alert('Demo: Feedback form would open here.')">
+            <a href="#" class="btn btn-outline" onclick="completeStep(4); alert('Thank you for your feedback!'); return false;">
                 <i class="fas fa-comment"></i> Provide Feedback
             </a>
         </div>
 
-        <!-- Results Summary (Demo) -->
+        <!-- Results Summary -->
         <div class="methodology-box" style="background: var(--white); border: 2px dashed var(--secondary-blue);">
-            <h3><i class="fas fa-chart-pie"></i> Research Results (Demo)</h3>
-            <p>Based on initial user testing:</p>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 1rem;">
-                <div>
-                    <h4>Pre-Assessment Average:</h4>
-                    <p style="font-size: 2rem; color: var(--accent-red);">48%</p>
-                    <p>Baseline knowledge</p>
-                </div>
-                <div>
-                    <h4>Post-Assessment Average:</h4>
-                    <p style="font-size: 2rem; color: var(--success-green);">76%</p>
-                    <p>After using platform</p>
-                </div>
+            <h3><i class="fas fa-chart-pie"></i> Your Progress Summary</h3>
+            <div id="progressSummary">
+                <p>Complete the pre-assessment to see your progress here.</p>
             </div>
-            <p><strong>Improvement: +28%</strong> in IoT privacy awareness</p>
         </div>
     </div>
+
+    <script>
+        // Initialize progress from localStorage
+        let currentStep = parseInt(localStorage.getItem('currentStep')) || 1;
+        let completedSteps = JSON.parse(localStorage.getItem('completedSteps')) || [];
+        
+        function updateProgress() {
+            // Update step buttons
+            for (let i = 1; i <= 4; i++) {
+                const stepBtn = document.getElementById(`step${i}`);
+                const stepCard = document.getElementById(
+                    i === 1 ? 'preCard' : 
+                    i === 2 ? 'learnCard' : 
+                    i === 3 ? 'postCard' : 'feedbackCard'
+                );
+                
+                // Remove all classes
+                stepBtn.classList.remove('active', 'completed', 'disabled');
+                
+                // Apply appropriate class
+                if (completedSteps.includes(i)) {
+                    stepBtn.classList.add('completed');
+                    stepBtn.disabled = false;
+                } else if (i === currentStep) {
+                    stepBtn.classList.add('active');
+                    stepBtn.disabled = false;
+                    stepCard.style.display = 'block';
+                } else if (i < currentStep) {
+                    stepBtn.classList.add('completed');
+                    stepBtn.disabled = false;
+                } else {
+                    stepBtn.classList.add('disabled');
+                    stepBtn.disabled = true;
+                }
+                
+                // Hide non-active cards
+                if (i !== currentStep) {
+                    stepCard.style.display = 'none';
+                }
+            }
+            
+            // Update status message
+            const stepNames = ['Pre-Assessment', 'Learn', 'Post-Assessment', 'Feedback'];
+            document.getElementById('currentStepText').textContent = stepNames[currentStep - 1];
+            
+            // Update progress summary
+            updateProgressSummary();
+            
+            // Save to localStorage
+            localStorage.setItem('currentStep', currentStep);
+            localStorage.setItem('completedSteps', JSON.stringify(completedSteps));
+        }
+        
+        function setActiveStep(step) {
+            if (step <= currentStep || completedSteps.includes(step)) {
+                currentStep = step;
+                updateProgress();
+            }
+        }
+        
+        function completeStep(step) {
+            if (!completedSteps.includes(step)) {
+                completedSteps.push(step);
+            }
+            if (step < 4) {
+                currentStep = step + 1;
+            }
+            updateProgress();
+            
+            // Show success message
+            const stepNames = ['Pre-Assessment', 'Learn', 'Post-Assessment', 'Feedback'];
+            alert(`✅ Step ${step} (${stepNames[step-1]}) completed! Moving to next step.`);
+        }
+        
+        function trackLearning(resource) {
+            console.log(`Learning resource accessed: ${resource}`);
+            // You could track this in analytics
+        }
+        
+        function resetProgress() {
+            if (confirm('Are you sure you want to reset your progress? This will clear all completed steps.')) {
+                currentStep = 1;
+                completedSteps = [];
+                localStorage.removeItem('currentStep');
+                localStorage.removeItem('completedSteps');
+                updateProgress();
+            }
+        }
+        
+        function updateProgressSummary() {
+            const summaryDiv = document.getElementById('progressSummary');
+            const totalSteps = 4;
+            const completedCount = completedSteps.length;
+            
+            let summaryHtml = `
+                <div style="display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;">
+                    <div style="text-align: center;">
+                        <div style="font-size: 3rem; color: var(--secondary-blue);">${completedCount}/${totalSteps}</div>
+                        <p>Steps Completed</p>
+                    </div>
+                    <div style="flex: 1;">
+                        <div style="height: 10px; background: #eee; border-radius: 5px; overflow: hidden;">
+                            <div style="height: 100%; width: ${(completedCount/totalSteps)*100}%; background: var(--success-green);"></div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            if (completedCount === totalSteps) {
+                summaryHtml += `
+                    <div style="margin-top: 1rem; padding: 1rem; background: #d4edda; border-radius: 5px; text-align: center;">
+                        <i class="fas fa-trophy" style="color: gold; font-size: 2rem;"></i>
+                        <h4>Congratulations! You've completed all steps!</h4>
+                        <p>Thank you for contributing to our research.</p>
+                    </div>
+                `;
+            }
+            
+            summaryDiv.innerHTML = summaryHtml;
+        }
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', updateProgress);
+    </script>
 
     <footer class="footer">
         <div class="container">
@@ -278,7 +487,7 @@
                         <li><a href="blogs.html">Blog</a></li>
                         <li><a href="guides.html">Privacy Guides</a></li>
                         <li><a href="resources.html">Resources</a></li>
-                        <li><a href="survey.html">Assessment</a></li>
+                        <li><a href="infographics.html">Data Visuals</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -295,6 +504,6 @@
         </div>
     </footer>
 
-    <script src="jsmain.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
