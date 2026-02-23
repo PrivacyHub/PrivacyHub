@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smart TV Privacy Guide - SmartPrivacyHub</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="cssstyle.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         .guide-hero {
@@ -112,7 +112,7 @@
     <nav class="navbar">
         <div class="container nav-container">
             <a href="index.html" class="logo">
-                <img src="images/1.png" alt="SmartPrivacyHub Logo" style="height: 40px; width: auto;">
+                <img src="Image1.jpeg" alt="SmartPrivacyHub Logo" style="height: 40px; width: auto;">
                 <span class="logo-text">Smart<span>Privacy</span>Hub</span>
             </a>
             <div class="menu-toggle">
@@ -293,4 +293,62 @@
         </div>
 
         <div style="text-align: center; margin: 3rem 0;">
-            <a href="guide-google-home
+            <a href="guide-google-home.html" class="btn btn-primary"><i class="fas fa-arrow-left"></i> Previous: Google Home</a>
+            <a href="guides.html" class="btn btn-outline">All Guides</a>
+            <a href="guide-fitness-tracker.html" class="btn btn-secondary">Next: Fitness Trackers <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+
+    <script>
+        function showBrand(brand) {
+            // Hide all brand content
+            document.querySelectorAll('.brand-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.brand-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected brand
+            document.getElementById(brand).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+    </script>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>SmartPrivacyHub</h4>
+                    <p>Empowering users to take control of their IoT privacy through education and actionable guides.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="blogs.html">Blog</a></li>
+                        <li><a href="guides.html">Privacy Guides</a></li>
+                        <li><a href="survey.html">Surveys</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@smartprivacyhub.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Manchester, UK</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 SmartPrivacyHub. All rights reserved. | Created by Asayel Hasan</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="jsmain.js"></script>
+</body>
+</html>
