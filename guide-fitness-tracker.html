@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Tracker Privacy Guide - SmartPrivacyHub</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .guide-hero {
+            background: linear-gradient(135deg, #00b09b 0%, #96c93d 100%);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .guide-hero i {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: rgba(255,255,255,0.2);
+            padding: 1rem;
+            border-radius: 50%;
+        }
+        
+        .guide-section {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: var(--shadow);
+        }
+        
+        .brand-tabs {
+            display: flex;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .brand-tab {
+            padding: 1rem 2rem;
+            background: var(--gray-bg);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .brand-tab:hover, .brand-tab.active {
+            background: var(--secondary-blue);
+            color: white;
+        }
+        
+        .brand-content {
+            display: none;
+            padding: 2rem;
+            background: var(--light-blue);
+            border-radius: 10px;
+        }
+        
+        .brand-content.active {
+            display: block;
+        }
+        
+        .step-card {
+            background: white;
+            border-left: 4px solid var(--secondary-blue);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 5px;
+        }
+        
+        .step-number {
+            background: var(--secondary-blue);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            font-weight: bold;
+        }
+        
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 5px;
+        }
+        
+        .tip-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 5px;
+        }
+        
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .data-item {
+            background: var(--gray-bg);
+            padding: 1rem;
+            border-radius: 5px;
+            text-align: center;
+            border-bottom: 3px solid var(--secondary-blue);
+        }
+        
+        .data-item i {
+            font-size: 2rem;
+            color: var(--secondary-blue);
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="images/1.png" alt="SmartPrivacyHub Logo" style="height: 40px; width: auto;">
+                <span class="logo-text">Smart<span>Privacy</span>Hub</span>
+            </a>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="blogs.html">Blog</a></li>
+                <li><a href="guides.html" class="active">Privacy Guides</a></li>
+                <li><a href="survey.html">Survey</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="guide-hero">
+        <div class="container">
+            <i class="fas fa-heartbeat"></i>
+            <h1>Fitness Tracker Privacy Guide</h1>
+            <p>Secure your health data, manage app permissions, and disable public sharing</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="guide-section">
+            <h2><i class="fas fa-database" style="color: var(--secondary-blue);"></i> What Data Do Fitness Trackers Collect?</h2>
+            <p>Fitness trackers collect highly sensitive personal and health data. Understanding what's being collected is crucial for protecting your privacy.</p>
+            
+            <div class="data-grid">
+                <div class="data-item">
+                    <i class="fas fa-heart"></i>
+                    <h4>Heart Rate</h4>
+                    <p>Continuous monitoring, resting rate, workout peaks</p>
+                </div>
+                <div class="data-item">
+                    <i class="fas fa-moon"></i>
+                    <h4>Sleep Patterns</h4>
+                    <p>Duration, quality, REM cycles</p>
+                </div>
+                <div class="data-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h4>GPS Location</h4>
+                    <p>Running routes, frequently visited places</p>
+                </div>
+                <div class="data-item">
+                    <i class="fas fa-shoe-prints"></i>
+                    <h4>Step Count</h4>
+                    <p>Daily activity levels</p>
+                </div>
+                <div class="data-item">
+                    <i class="fas fa-fire"></i>
+                    <h4>Calories Burned</h4>
+                    <p>Energy expenditure</p>
+                </div>
+                <div class="data-item">
+                    <i class="fas fa-credit-card"></i>
+                    <h4>Payment Info</h4>
+                    <p>If using contactless payments</p>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <i class="fas fa-exclamation-triangle" style="color: #856404;"></i>
+                <h3>Why This Data Is Sensitive</h3>
+                <p>Health data can reveal medical conditions, daily routines, and location history. This information could affect insurance rates, employment opportunities, and personal privacy if compromised.</p>
+            </div>
+        </div>
+
+        <div class="guide-section">
+            <h2><i class="fas fa-list-ol" style="color: var(--secondary-blue);"></i> Privacy Settings by Device</h2>
+            
+            <div class="brand-tabs">
+                <button class="brand-tab active" onclick="showBrand('fitbit')">Fitbit</button>
+                <button class="brand-tab" onclick="showBrand('garmin')">Garmin</button>
+                <button class="brand-tab" onclick="showBrand('apple')">Apple Watch</button>
+                <button class="brand-tab" onclick="showBrand('samsung')">Samsung Galaxy Watch</button>
+            </div>
+
+            <div id="fitbit" class="brand-content active">
+                <h3>Fitbit Privacy Settings</h3>
+                
+                <div class="step-card">
+                    <h4><span class="step-number">1</span> Disable Public Sharing</h4>
+                    <ol>
+                        <li>Open Fitbit app on your smartphone</li>
+                        <li>Tap your profile picture (top left)</li>
+                        <li>Select "Settings" → "Privacy"</li>
+                        <li>Under "Personal Info Sharing":
+                            <ul>
+                                <li>Turn off "Share my activity stats"</li>
+                                <li>Disable "Share my sleep stats"</li>
+                                <li>Turn off "Share my weight stats"</li>
+                            </ul>
+                        </li>
+                        <li>Set "Profile Visibility" to "Private" or "Friends Only"</li>
+                    </ol>
+                </div>
+
+                <div class="step-card">
+                    <h4><span class="step-number">2</span> Manage App Permissions</h4>
+                    <ol>
+                        <li>In Fitbit app, go to "Settings"</li>
+                        <li>Tap "Connected Apps"</li>
+                        <li>Review all connected third-party apps</li>
+                        <li>Remove any apps you don't use by tapping "Revoke Access"</li>
+                    </ol>
+                </div>
+
+                <div class="step-card">
+                    <h4><span class="step-number">3</span> Disable Ad Personalization</h4>
+                    <ol>
+                        <li>Go to "Settings" → "Privacy"</li>
+                        <li>Find "Ad Personalization"</li>
+                        <li>Toggle OFF</li>
+                    </ol>
+                </div>
+
+                <div class="step-card">
+                    <h4><span class="step-number">4</span> Secure Your Account</h4>
+                    <ol>
+                        <li>Enable two-factor authentication in account settings</li>
+                        <li>Use a strong, unique password</li>
+                        <li>Regularly review login history</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div id="garmin" class="brand-content">
+                <h3>Garmin Privacy Settings</h3>
+                
+                <div class="step-card">
+                    <h4><span class="step-number">1</span> Control Profile Visibility</h4>
+                    <ol>
+                        <li>Go to Garmin Connect app</li>
+                        <li>Tap "More" (bottom right)</li>
+                        <li>Select "Settings" → "Profile Visibility"</li>
+                        <li>Set to "Private" or "Connections Only"</li>
+                    </ol>
+                </div>
+
+                <div class="step-card">
+                    <h4><span class="step-number">2</span> Manage Activity Sharing</h4>
+                    <ol>
+                        <li>In Garmin Connect, go to "Settings"</li>
+                        <li>Select "Activity Privacy"</li>
+                        <li>Choose default privacy for all activities:
+                            <ul>
+                                <li>"Only Me" - Most private</li>
+                                <li>"Connections" - Share with friends only</li>
+                                <li>"Public" - Avoid this option</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="step-card">
+                    <h4><span class="step-number">3</span> Review Connected Apps</h4>
+                    <ol>
+                        <li>Go to "Settings" → "Connected Apps"</li>
+                        <li>Review list of apps with access</li>
+                        <li>Remove any unfamiliar or unused apps</li>
+                    </ol>
+                </div>
+
+                <div class="tip-box">
+                    <i class="fas fa-info-circle"></i> <strong>Tip:</strong> Garmin offers "LiveTrack" which shares your real-time location during activities. Disable this if not needed.
+                </div>
+            </div>
+
+            <div id="apple" class="brand-content">
+                <h3>Apple Watch Privacy Settings</h3>
+                
+                <div class="step-card">
+                    <h4><span class="step-number">1</span> Control Health App Permissions</h4>
+                    <ol>
+                        <li>Open the Health app on iPhone</li>
+                        <li>Tap your profile picture (top right)</li>
+                        <li>Select "Privacy" → "Apps"</li>
+                        <li>Review each app's access to health data</li>
+                        <li>Toggle OFF access for any unnecessary apps</li>
+                    </ol>
+                </div>
+
+                <div class="step-card">
+                    <h4><span class="step-number">2</span> Manage Device Permissions</h4>
+                    <ol>
+                        <li>Open Watch app on iPhone</li>
+                        <li>Go to "Privacy"</li>
+                        <li>Review and disable:
+                            <ul>
+                                <li>Heart Rate</li>
+                                <li>Fitness Tracking</li>
+                                <li>Noise Monitoring</li>
+                                <li>Location Services</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="step-card">
+                    <h4><span class="step-number">3</span> Disable Share Health Data</h4>
+                    <ol>
+                        <li>In Health app, go to "Sharing"</li>
+                        <li>Review who you're sharing with</li>
+                        <li>Stop sharing with anyone unnecessary</li>
+                        <li>Turn off "Share With Your Doctor" if not needed</li>
+                    </ol>
+                </div>
+
+                <div class="warning-box">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h4>Apple Watch Series Features</h4>
+                    <p>Newer Apple Watches include features like fall detection, ECG, and blood oxygen monitoring. Review these settings and disable any you don't need.</p>
+                </div>
+            </div>
+
+            <div id="samsung" class="brand-content">
+                <h3>Samsung Galaxy Watch Privacy Settings</h3>
+                
+                <div class="step-card">
+                    <h4><span class="step-number">1</span> Control Samsung Health Privacy</h4>
+                    <ol>
+                        <li>Open Samsung Health app</li>
+                        <li>Tap the three lines (menu)</li>
+                        <li>Select "Settings" → "Privacy"</li>
+                        <li>Turn off "Share activity data"</li>
+                        <li>Disable "Marketing notifications"</li>
+                    </ol>
+                </div>
+
+                <div class="step-card">
+                    <h4><span class="step-number">2</span> Manage App Permissions</h4>
+                    <ol>
+                        <li>Go to Galaxy Wearable app</li>
+                        <li>Tap "Watch settings" → "Apps"</li>
+                        <li>Review app permissions</li>
+                        <li>Remove access for unused apps</li>
+                    </ol>
+                </div>
+
+                <div class="step-card">
+                    <h4><span class="step-number">3</span> Disable Samsung Cloud Sync</h4>
+                    <ol>
+                        <li>In Samsung Health settings</li>
+                        <li>Find "Sync with Samsung Cloud"</li>
+                        <li>Toggle OFF if you prefer local storage</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="guide-section">
+            <h2><i class="fas fa-shield-alt" style="color: var(--secondary-blue);"></i> Universal Privacy Tips</h2>
+            
+            <div class="tip-box">
+                <i class="fas fa-key"></i>
+                <h4>Account Security</h4>
+                <ul>
+                    <li><strong>Use strong, unique passwords</strong> for each fitness app</li>
+                    <li><strong>Enable two-factor authentication</strong> everywhere possible</li>
+                    <li><strong>Regularly review login history</strong> for suspicious activity</li>
+                </ul>
+            </div>
+
+            <div class="tip-box">
+                <i class="fas fa-mobile-alt"></i>
+                <h4>App Permissions</h4>
+                <ul>
+                    <li><strong>Review app permissions monthly</strong> - apps often request more access than needed</li>
+                    <li><strong>Disable location tracking</strong> when not needed for specific activities</li>
+                    <li><strong>Turn off public sharing features</strong> - your workouts don't need to be public</li>
+                    <li><strong>Be careful with social media connections</strong> - avoid auto-posting workouts</li>
+                </ul>
+            </div>
+
+            <div class="tip-box">
+                <i class="fas fa-trash-alt"></i>
+                <h4>Data Management</h4>
+                <ul>
+                    <li><strong>Regularly delete old activity data</strong> you no longer need</li>
+                    <li><strong>Download your data</strong> before deleting accounts</li>
+                    <li><strong>Factory reset your device</strong> before selling or giving away</li>
+                    <li><strong>Remove device from your account</strong> when replacing it</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="guide-section">
+            <h2><i class="fas fa-check-circle" style="color: var(--secondary-blue);"></i> Privacy Checklist</h2>
+            <div class="data-grid">
+                <div class="data-item">
+                    <i class="fas fa-check-circle" style="color: #28a745;"></i>
+                    <h4>Profile Privacy</h4>
+                    <p>Set to Private/Friends Only</p>
+                </div>
+                <div class="data-item">
+                    <i class="fas fa-check-circle" style="color: #28a745;"></i>
+                    <h4>Public Sharing</h4>
+                    <p>Disabled</p>
+                </div>
+                <div class="data-item">
+                    <i class="fas fa-check-circle" style="color: #28a745;"></i>
+                    <h4>Connected Apps</h4>
+                    <p>Reviewed & Cleaned</p>
+                </div>
+                <div class="data-item">
+                    <i class="fas fa-check-circle" style="color: #28a745;"></i>
+                    <h4>2FA Enabled</h4>
+                    <p>Active</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin: 3rem 0;">
+            <a href="guide-smart-tv.html" class="btn btn-primary"><i class="fas fa-arrow-left"></i> Previous: Smart TV Guide</a>
+            <a href="guides.html" class="btn btn-outline">All Guides</a>
+            <a href="guide-thermostat.html" class="btn btn-secondary">Next: Smart Thermostats <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+
+    <script>
+        function showBrand(brand) {
+            // Hide all brand content
+            document.querySelectorAll('.brand-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.brand-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected brand
+            document.getElementById(brand).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+    </script>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>SmartPrivacyHub</h4>
+                    <p>Empowering users to take control of their IoT privacy through education and actionable guides.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="blogs.html">Blog</a></li>
+                        <li><a href="guides.html">Privacy Guides</a></li>
+                        <li><a href="survey.html">Surveys</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@smartprivacyhub.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Manchester, UK</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 SmartPrivacyHub. All rights reserved. | Created by Asayel Hasan</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
