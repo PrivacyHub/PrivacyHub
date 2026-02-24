@@ -11,6 +11,21 @@
         .blog-card {
             position: relative;
             overflow: hidden;
+            transition: var(--transition);
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Make the entire image area clickable */
+        .blog-image-link {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+            overflow: hidden;
         }
         
         .blog-image {
@@ -21,6 +36,11 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            transition: var(--transition);
+        }
+        
+        .blog-image-link:hover .blog-image {
+            transform: scale(1.02);
         }
         
         .blog-image::before {
@@ -32,6 +52,10 @@
             height: 200%;
             background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
             animation: rotate 10s linear infinite;
+        }
+        
+        .blog-image-link:hover .blog-image::before {
+            animation: rotate 5s linear infinite;
         }
         
         @keyframes rotate {
@@ -48,9 +72,18 @@
             animation: float 3s ease-in-out infinite;
         }
         
+        .blog-image-link:hover .blog-image i {
+            animation: bounce 0.5s ease;
+        }
+        
         @keyframes float {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
         }
         
         /* Device-specific gradients */
@@ -74,8 +107,28 @@
             background: linear-gradient(135deg, #2C3E50 0%, #E74C3C 100%);
         }
         
-        /* Device-specific overlays */
+        /* Add a "Read More" overlay on image hover */
         .blog-image::after {
+            content: 'Click to Read';
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            text-align: center;
+            padding: 0.5rem;
+            font-size: 0.9rem;
+            transition: bottom 0.3s ease;
+            z-index: 3;
+        }
+        
+        .blog-image-link:hover .blog-image::after {
+            bottom: 0;
+        }
+        
+        /* Device-specific overlays */
+        .blog-image::before {
             content: '';
             position: absolute;
             bottom: 0;
@@ -127,6 +180,7 @@
         /* Blog content enhancements */
         .blog-content {
             position: relative;
+            padding: 1.5rem;
         }
         
         .blog-content::after {
@@ -150,24 +204,11 @@
             font-size: 0.8rem;
         }
         
-        /* Hover effects */
-        .blog-card:hover .blog-image i {
-            animation: bounce 0.5s ease;
-        }
-        
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-        
-        .blog-card:hover .blog-image::before {
-            animation: rotate 5s linear infinite;
-        }
-        
         /* Category buttons enhancement */
         .category-btn {
             position: relative;
             overflow: hidden;
+            cursor: pointer;
         }
         
         .category-btn::before {
@@ -222,7 +263,7 @@
             z-index: 2;
         }
         
-        /* Stats overlay for some cards */
+        /* Stats overlay for cards */
         .blog-stats {
             display: flex;
             gap: 1rem;
@@ -241,6 +282,18 @@
         
         .stat-item i {
             color: var(--secondary-blue);
+        }
+        
+        /* Ensure the title is also clickable */
+        .blog-title a {
+            color: var(--primary-blue);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .blog-title a:hover {
+            color: var(--secondary-blue);
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -286,12 +339,14 @@
         <div class="blog-grid">
             <!-- Blog Post 1: Smart TV -->
             <article class="blog-card" data-category="Smart TVs">
-                <div class="blog-image">
-                    <i class="fas fa-tv"></i>
-                </div>
+                <a href="blog-smart-tv.html" class="blog-image-link">
+                    <div class="blog-image">
+                        <i class="fas fa-tv"></i>
+                    </div>
+                </a>
                 <div class="blog-content">
                     <span class="blog-category">Smart TVs</span>
-                    <h3 class="blog-title">Smart TV Privacy Risks: What Data Your TV Collects and How to Stay Safe</h3>
+                    <h3 class="blog-title"><a href="blog-smart-tv.html">Smart TV Privacy Risks: What Data Your TV Collects and How to Stay Safe</a></h3>
                     <p class="blog-excerpt">Smart TVs collect viewing history, search terms, IP address, and use ACR technology. Learn how to protect your privacy...</p>
                     <div class="blog-meta">
                         <span><i class="far fa-calendar"></i> Dec 10, 2025</span>
@@ -307,12 +362,14 @@
 
             <!-- Blog Post 2: Smart Speaker -->
             <article class="blog-card" data-category="Smart Speakers">
-                <div class="blog-image">
-                    <i class="fas fa-microphone-alt"></i>
-                </div>
+                <a href="blog-smart-speaker.html" class="blog-image-link">
+                    <div class="blog-image">
+                        <i class="fas fa-microphone-alt"></i>
+                    </div>
+                </a>
                 <div class="blog-content">
                     <span class="blog-category">Smart Speakers</span>
-                    <h3 class="blog-title">Smart Speaker Privacy: Is Your Voice Being Recorded?</h3>
+                    <h3 class="blog-title"><a href="blog-smart-speaker.html">Smart Speaker Privacy: Is Your Voice Being Recorded?</a></h3>
                     <p class="blog-excerpt">Understanding how Alexa, Google Home collect voice data, accidental recordings, and how to protect your conversations...</p>
                     <div class="blog-meta">
                         <span><i class="far fa-calendar"></i> Dec 8, 2025</span>
@@ -328,12 +385,14 @@
 
             <!-- Blog Post 3: Smart Watch -->
             <article class="blog-card" data-category="Wearables">
-                <div class="blog-image">
-                    <i class="fas fa-heartbeat"></i>
-                </div>
+                <a href="blog-smart-watch.html" class="blog-image-link">
+                    <div class="blog-image">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                </a>
                 <div class="blog-content">
                     <span class="blog-category">Wearables</span>
-                    <h3 class="blog-title">Smart Watch Privacy: Is Your Health Data Safe?</h3>
+                    <h3 class="blog-title"><a href="blog-smart-watch.html">Smart Watch Privacy: Is Your Health Data Safe?</a></h3>
                     <p class="blog-excerpt">Heart rate, sleep patterns, GPS location - smart watches collect sensitive health data. Learn how to secure it...</p>
                     <div class="blog-meta">
                         <span><i class="far fa-calendar"></i> Dec 5, 2025</span>
@@ -349,12 +408,14 @@
 
             <!-- Blog Post 4: Smart Thermostat -->
             <article class="blog-card" data-category="Smart Home">
-                <div class="blog-image">
-                    <i class="fas fa-thermometer-half"></i>
-                </div>
+                <a href="blog-smart-thermostat.html" class="blog-image-link">
+                    <div class="blog-image">
+                        <i class="fas fa-thermometer-half"></i>
+                    </div>
+                </a>
                 <div class="blog-content">
                     <span class="blog-category">Smart Home</span>
-                    <h3 class="blog-title">Smart Thermostat Privacy: What Your Device Knows About You</h3>
+                    <h3 class="blog-title"><a href="blog-smart-thermostat.html">Smart Thermostat Privacy: What Your Device Knows About You</a></h3>
                     <p class="blog-excerpt">Temperature preferences, occupancy data, and daily routines - discover what your thermostat reveals...</p>
                     <div class="blog-meta">
                         <span><i class="far fa-calendar"></i> Dec 3, 2025</span>
@@ -370,12 +431,14 @@
 
             <!-- Blog Post 5: Doorbell Camera -->
             <article class="blog-card" data-category="Security">
-                <div class="blog-image">
-                    <i class="fas fa-video"></i>
-                </div>
+                <a href="blog-doorbell.html" class="blog-image-link">
+                    <div class="blog-image">
+                        <i class="fas fa-video"></i>
+                    </div>
+                </a>
                 <div class="blog-content">
                     <span class="blog-category">Security</span>
-                    <h3 class="blog-title">Smart Doorbell Cameras: Security or Privacy Risk?</h3>
+                    <h3 class="blog-title"><a href="blog-doorbell.html">Smart Doorbell Cameras: Security or Privacy Risk?</a></h3>
                     <p class="blog-excerpt">Video footage, audio recordings, and facial recognition - examine the privacy implications of doorbell cameras...</p>
                     <div class="blog-meta">
                         <span><i class="far fa-calendar"></i> Nov 30, 2025</span>
@@ -391,12 +454,14 @@
 
             <!-- Blog Post 6: Security Camera -->
             <article class="blog-card" data-category="Security">
-                <div class="blog-image">
-                    <i class="fas fa-camera"></i>
-                </div>
+                <a href="blog-security-camera.html" class="blog-image-link">
+                    <div class="blog-image">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                </a>
                 <div class="blog-content">
                     <span class="blog-category">Security</span>
-                    <h3 class="blog-title">Smart Security Cameras: Protecting Your Home and Your Privacy</h3>
+                    <h3 class="blog-title"><a href="blog-security-camera.html">Smart Security Cameras: Protecting Your Home and Your Privacy</a></h3>
                     <p class="blog-excerpt">How to balance home security with privacy concerns when using smart cameras and monitoring systems...</p>
                     <div class="blog-meta">
                         <span><i class="far fa-calendar"></i> Nov 28, 2025</span>
@@ -412,12 +477,14 @@
 
             <!-- Blog Post 7: Smart Plug -->
             <article class="blog-card" data-category="Smart Home">
-                <div class="blog-image">
-                    <i class="fas fa-plug"></i>
-                </div>
+                <a href="blog-smart-plug.html" class="blog-image-link">
+                    <div class="blog-image">
+                        <i class="fas fa-plug"></i>
+                    </div>
+                </a>
                 <div class="blog-content">
                     <span class="blog-category">Smart Home</span>
-                    <h3 class="blog-title">Smart Plug Privacy: Are Your Outlets Spying on You?</h3>
+                    <h3 class="blog-title"><a href="blog-smart-plug.html">Smart Plug Privacy: Are Your Outlets Spying on You?</a></h3>
                     <p class="blog-excerpt">Power usage data and schedules can reveal when you're home. Learn what smart plugs track...</p>
                     <div class="blog-meta">
                         <span><i class="far fa-calendar"></i> Nov 25, 2025</span>
@@ -433,12 +500,14 @@
 
             <!-- Blog Post 8: Smart Lock -->
             <article class="blog-card" data-category="Security">
-                <div class="blog-image">
-                    <i class="fas fa-lock"></i>
-                </div>
+                <a href="blog-smart-lock.html" class="blog-image-link">
+                    <div class="blog-image">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                </a>
                 <div class="blog-content">
                     <span class="blog-category">Security</span>
-                    <h3 class="blog-title">Smart Lock Privacy: Is Your Digital Key Secure?</h3>
+                    <h3 class="blog-title"><a href="blog-smart-lock.html">Smart Lock Privacy: Is Your Digital Key Secure?</a></h3>
                     <p class="blog-excerpt">Entry logs, access codes, and biometric data - understand the risks and how to protect your smart lock...</p>
                     <div class="blog-meta">
                         <span><i class="far fa-calendar"></i> Nov 22, 2025</span>
@@ -454,12 +523,14 @@
 
             <!-- Blog Post 9: Fitness Tracker -->
             <article class="blog-card" data-category="Wearables">
-                <div class="blog-image">
-                    <i class="fas fa-running"></i>
-                </div>
+                <a href="blog-fitness-tracker.html" class="blog-image-link">
+                    <div class="blog-image">
+                        <i class="fas fa-running"></i>
+                    </div>
+                </a>
                 <div class="blog-content">
                     <span class="blog-category">Wearables</span>
-                    <h3 class="blog-title">Fitness Tracker Privacy: Where Does Your Health Data Go?</h3>
+                    <h3 class="blog-title"><a href="blog-fitness-tracker.html">Fitness Tracker Privacy: Where Does Your Health Data Go?</a></h3>
                     <p class="blog-excerpt">Steps, heart rate, sleep patterns - who has access to your fitness data and how to protect it...</p>
                     <div class="blog-meta">
                         <span><i class="far fa-calendar"></i> Nov 20, 2025</span>
@@ -475,12 +546,14 @@
 
             <!-- Blog Post 10: Air Purifier -->
             <article class="blog-card" data-category="Smart Home">
-                <div class="blog-image">
-                    <i class="fas fa-wind"></i>
-                </div>
+                <a href="blog-air-purifier.html" class="blog-image-link">
+                    <div class="blog-image">
+                        <i class="fas fa-wind"></i>
+                    </div>
+                </a>
                 <div class="blog-content">
                     <span class="blog-category">Smart Home</span>
-                    <h3 class="blog-title">Smart Air Purifiers: Hidden Data Collection?</h3>
+                    <h3 class="blog-title"><a href="blog-air-purifier.html">Smart Air Purifiers: Hidden Data Collection?</a></h3>
                     <p class="blog-excerpt">Air quality monitors and usage patterns - discover what your air purifier knows about your daily routine...</p>
                     <div class="blog-meta">
                         <span><i class="far fa-calendar"></i> Nov 18, 2025</span>
@@ -496,12 +569,14 @@
 
             <!-- Blog Post 11: Smart Oven -->
             <article class="blog-card" data-category="Smart Home">
-                <div class="blog-image">
-                    <i class="fas fa-utensils"></i>
-                </div>
+                <a href="blog-smart-oven.html" class="blog-image-link">
+                    <div class="blog-image">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                </a>
                 <div class="blog-content">
                     <span class="blog-category">Smart Home</span>
-                    <h3 class="blog-title">Smart Ovens and Kitchen Appliances: Cooking Up Privacy Concerns</h3>
+                    <h3 class="blog-title"><a href="blog-smart-oven.html">Smart Ovens and Kitchen Appliances: Cooking Up Privacy Concerns</a></h3>
                     <p class="blog-excerpt">Usage patterns, cooking schedules, and recipe preferences - what your smart kitchen knows about you...</p>
                     <div class="blog-meta">
                         <span><i class="far fa-calendar"></i> Nov 15, 2025</span>
