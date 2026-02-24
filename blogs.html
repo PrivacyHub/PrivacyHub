@@ -686,5 +686,108 @@
             observer.observe(card);
         });
     </script>
+    <script>
+    // Category filtering functionality
+    document.querySelectorAll('.category-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            // Remove active class from all buttons
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Add active class to clicked button
+            this.classList.add('active');
+            
+            const category = this.textContent.trim();
+            filterPostsByCategory(category);
+            
+            // Update URL without reloading
+            const url = new URL(window.location);
+            if (category === 'All Posts') {
+                url.searchParams.delete('category');
+            } else {
+                const categoryParam = category.toLowerCase().replace(' ', '-');
+                url.searchParams.set('category', categoryParam);
+            }
+            window.history.replaceState({}, '', url);
+        });
+    });
+    
+    function filterPostsByCategory(category) {
+        const posts = document.querySelectorAll('.blog-card');
+        
+        posts.forEach(post => {
+            if (category === 'All Posts') {
+                post.style.display = 'block';
+                // Add fade-in animation
+                post.style.animation = 'fadeIn 0.5s ease';
+            } else {
+                const postCategory = post.getAttribute('data-category');
+                if (postCategory === category) {
+                    post.style.display = 'block';
+                    post.style.animation = 'fadeIn 0.5s ease';
+                } else {
+                    post.style.display = 'none';
+                }
+            }
+        });
+    }
+    
+    // Function to get URL parameters
+    function getUrlParameter(name) {
+        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+        var results = regex.exec(location.search);
+        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    }
+    
+    // Category mapping from URL parameter to actual category names
+    const categoryMapping = {
+        'smart-home': 'Smart Home',
+        'wearables': 'Wearables',
+        'voice-assistant': 'Smart Speakers'
+    };
+    
+    // Check URL on page load and filter accordingly
+    document.addEventListener('DOMContentLoaded', function() {
+        const categoryParam = getUrlParameter('category');
+        
+        if (categoryParam && categoryMapping[categoryParam]) {
+            const targetCategory = categoryMapping[categoryParam];
+            
+            // Find and click the corresponding category button
+            const buttons = document.querySelectorAll('.category-btn');
+            buttons.forEach(btn => {
+                if (btn.textContent.trim() === targetCategory) {
+                    btn.click();
+                    
+                    // Scroll to filtered posts
+                    setTimeout(() => {
+                        document.querySelector('.blog-grid').scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }, 100);
+                }
+            });
+        }
+        
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.blog-card').forEach(card => {
+            card.style
 </body>
 </html>
