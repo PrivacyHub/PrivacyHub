@@ -70,40 +70,74 @@
         .video-thumbnail {
             position: relative;
             height: 200px;
-            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             cursor: pointer;
+            transition: transform 0.3s ease;
         }
         
-        .video-thumbnail i {
-            font-size: 4rem;
-            color: white;
-            opacity: 0.8;
-            transition: var(--transition);
+        .video-thumbnail:hover {
+            transform: scale(1.02);
         }
         
-        .video-thumbnail:hover i {
-            opacity: 1;
-            transform: scale(1.1);
+        .video-thumbnail::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.3);
+            transition: background 0.3s ease;
+        }
+        
+        .video-thumbnail:hover::before {
+            background: rgba(0,0,0,0.5);
         }
         
         .play-button {
             position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             width: 60px;
             height: 60px;
-            background: rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.9);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            backdrop-filter: blur(5px);
+            z-index: 2;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
         
         .play-button i {
             font-size: 2rem;
+            color: var(--secondary-blue);
+            margin-left: 4px;
+        }
+        
+        .video-thumbnail:hover .play-button {
+            transform: translate(-50%, -50%) scale(1.1);
+            background: var(--secondary-blue);
+        }
+        
+        .video-thumbnail:hover .play-button i {
             color: white;
+        }
+        
+        .video-duration {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            z-index: 2;
         }
         
         .video-content {
@@ -192,15 +226,18 @@
         
         .featured-thumbnail {
             height: 300px;
-            background: linear-gradient(135deg, var(--primary-blue), var(--accent-orange));
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            background-size: cover;
+            background-position: center;
+            position: relative;
         }
         
-        .featured-thumbnail i {
-            font-size: 5rem;
-            color: white;
+        .featured-thumbnail .play-button {
+            width: 80px;
+            height: 80px;
+        }
+        
+        .featured-thumbnail .play-button i {
+            font-size: 2.5rem;
         }
         
         .featured-content {
@@ -275,6 +312,7 @@
             color: white;
             font-size: 2rem;
             cursor: pointer;
+            z-index: 3;
         }
         
         .video-wrapper {
@@ -353,7 +391,7 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="blogs.html">Blog</a></li>
                 <li><a href="guides.html">Privacy Guides</a></li>
-                <li><a href="resources.html">Resources</a></li>
+                <li><a href="resources.html" class="active">Resources</a></li>
                 <li><a href="survey.html">Survey</a></li>
                 <li><a href="about.html">About</a></li>
             </ul>
@@ -398,10 +436,11 @@
         <div class="video-grid" id="videoGrid">
             <!-- Video 1: DEF CON Talk - IoT Surveillance -->
             <div class="video-card" data-category="talks">
-                <div class="video-thumbnail" onclick="openVideo('WCnojaEpF2I')">
+                <div class="video-thumbnail" onclick="openVideo('WCnojaEpF2I')" style="background-image: url('https://img.youtube.com/vi/WCnojaEpF2I/maxresdefault.jpg');">
                     <div class="play-button">
                         <i class="fas fa-play"></i>
                     </div>
+                    <span class="video-duration">32:15</span>
                 </div>
                 <div class="video-content">
                     <span class="video-category">Conference Talk</span>
@@ -420,10 +459,11 @@
 
             <!-- Video 2: PriviFy - Tangible Privacy Interface Demo -->
             <div class="video-card" data-category="demonstrations">
-                <div class="video-thumbnail" onclick="openVideo('mzy84Vb_Gxk')">
+                <div class="video-thumbnail" onclick="openVideo('mzy84Vb_Gxk')" style="background-image: url('https://img.youtube.com/vi/mzy84Vb_Gxk/maxresdefault.jpg');">
                     <div class="play-button">
                         <i class="fas fa-play"></i>
                     </div>
+                    <span class="video-duration">15:42</span>
                 </div>
                 <div class="video-content">
                     <span class="video-category">Demo</span>
@@ -442,15 +482,16 @@
 
             <!-- Video 3: James Cook University - Are Smart Devices Secure? -->
             <div class="video-card" data-category="lectures">
-                <div class="video-thumbnail" onclick="openVideo('uurIrgWQNqs')">
+                <div class="video-thumbnail" onclick="openVideo('uurIrgWQNqs')" style="background-image: url('https://img.youtube.com/vi/uurIrgWQNqs/maxresdefault.jpg');">
                     <div class="play-button">
                         <i class="fas fa-play"></i>
                     </div>
+                    <span class="video-duration">28:30</span>
                 </div>
                 <div class="video-content">
                     <span class="video-category">University Lecture</span>
                     <h3 class="video-title">Research Spotlight: Are Smart Devices Secure?</h3>
-                    <p class="video-description">Dr. Steve from James Cook University demonstrates how hacked smart devices can be used to steal fingerprints and personal data. Live demonstration of real IoT vulnerabilities and their implications for personal privacy. </p>
+                    <p class="video-description">Dr. Steve from James Cook University demonstrates how hacked smart devices can be used to steal fingerprints and personal data. Live demonstration of real IoT vulnerabilities and their implications for personal privacy.</p>
                     <div class="video-meta">
                         <span><i class="fas fa-calendar"></i> 2025</span>
                         <span><i class="fas fa-university"></i> JCU Singapore</span>
@@ -464,15 +505,16 @@
 
             <!-- Video 4: Privacy vs Security - Video Essay -->
             <div class="video-card" data-category="explanations">
-                <div class="video-thumbnail" onclick="openVideo('UhbK4XJfIi8')">
+                <div class="video-thumbnail" onclick="openVideo('UhbK4XJfIi8')" style="background-image: url('https://img.youtube.com/vi/UhbK4XJfIi8/maxresdefault.jpg');">
                     <div class="play-button">
                         <i class="fas fa-play"></i>
                     </div>
+                    <span class="video-duration">12:18</span>
                 </div>
                 <div class="video-content">
                     <span class="video-category">Video Essay</span>
                     <h3 class="video-title">Privacy vs Security: What Do These Words Really Mean in IoT?</h3>
-                    <p class="video-description">ipXchange's thought-provoking video essay exploring the difference between security and privacy in the Internet of Things. Examines common misconceptions and what these concepts mean for everyday users. </p>
+                    <p class="video-description">ipXchange's thought-provoking video essay exploring the difference between security and privacy in the Internet of Things. Examines common misconceptions and what these concepts mean for everyday users.</p>
                     <div class="video-meta">
                         <span><i class="fas fa-calendar"></i> 2024</span>
                         <span><i class="fas fa-microphone"></i> ipXchange</span>
@@ -486,15 +528,16 @@
 
             <!-- Video 5: CITP Conference - IoT Security -->
             <div class="video-card" data-category="talks">
-                <div class="video-thumbnail" onclick="openVideo('yDtEMoU12f0')">
+                <div class="video-thumbnail" onclick="openVideo('yDtEMoU12f0')" style="background-image: url('https://img.youtube.com/vi/yDtEMoU12f0/maxresdefault.jpg');">
                     <div class="play-button">
                         <i class="fas fa-play"></i>
                     </div>
+                    <span class="video-duration">45:20</span>
                 </div>
                 <div class="video-content">
                     <span class="video-category">Conference</span>
                     <h3 class="video-title">Princeton CITP Conference: Security and Privacy of the Internet of Things</h3>
-                    <p class="video-description">Full conference recordings from Princeton's Center for Information Technology Policy featuring expert panels on IoT security, privacy implications, and future directions for smart device regulation. </p>
+                    <p class="video-description">Full conference recordings from Princeton's Center for Information Technology Policy featuring expert panels on IoT security, privacy implications, and future directions for smart device regulation.</p>
                     <div class="video-meta">
                         <span><i class="fas fa-calendar"></i> 2024</span>
                         <span><i class="fas fa-university"></i> Princeton CITP</span>
@@ -508,15 +551,16 @@
 
             <!-- Video 6: Raspberry Pi Security Implementation -->
             <div class="video-card" data-category="demonstrations">
-                <div class="video-thumbnail" onclick="openVideo('lZwNUfYQgTI')">
+                <div class="video-thumbnail" onclick="openVideo('lZwNUfYQgTI')" style="background-image: url('https://img.youtube.com/vi/lZwNUfYQgTI/maxresdefault.jpg');">
                     <div class="play-button">
                         <i class="fas fa-play"></i>
                     </div>
+                    <span class="video-duration">22:45</span>
                 </div>
                 <div class="video-content">
                     <span class="video-category">Tutorial</span>
                     <h3 class="video-title">End-to-End IoT Security: Raspberry Pi Practical Guide</h3>
-                    <p class="video-description">Hands-on tutorial demonstrating encryption, authentication, firewall configuration, and OTA updates for IoT devices using Raspberry Pi. Includes real configuration examples for smart home security. </p>
+                    <p class="video-description">Hands-on tutorial demonstrating encryption, authentication, firewall configuration, and OTA updates for IoT devices using Raspberry Pi. Includes real configuration examples for smart home security.</p>
                     <div class="video-meta">
                         <span><i class="fas fa-calendar"></i> 2025</span>
                         <span><i class="fas fa-microchip"></i> Technical Tutorial</span>
@@ -535,12 +579,14 @@
         <div class="container">
             <h2 style="text-align: center; margin-bottom: 2rem;">🎥 Featured: IoT Privacy Deep Dive</h2>
             <div class="featured-video">
-                <div class="featured-thumbnail">
-                    <i class="fas fa-microphone-alt"></i>
+                <div class="featured-thumbnail" style="background-image: url('https://img.youtube.com/vi/1y6ehNq9-Hk/maxresdefault.jpg');">
+                    <div class="play-button" onclick="openVideo('1y6ehNq9-Hk')">
+                        <i class="fas fa-play"></i>
+                    </div>
                 </div>
                 <div class="featured-content">
                     <h2>Six Tech Devices That Spy on You</h2>
-                    <p>Comprehensive investigation into everyday smart devices that collect and share your personal data without consent. Learn about smart TVs, fitness trackers, voice assistants, and hidden surveillance devices. Includes real cases of privacy violations and practical protection steps. [citation:8]</p>
+                    <p>Comprehensive investigation into everyday smart devices that collect and share your personal data without consent. Learn about smart TVs, fitness trackers, voice assistants, and hidden surveillance devices. Includes real cases of privacy violations and practical protection steps.</p>
                     <div class="video-meta" style="margin-bottom: 1.5rem;">
                         <span><i class="fas fa-clock"></i> 45 minutes</span>
                         <span><i class="fas fa-eye"></i> 150K+ views</span>
@@ -558,23 +604,23 @@
         <!-- Video Playlists by Topic -->
         <h2 style="margin: 3rem 0 2rem;">📚 Learning Paths</h2>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;">
-            <div style="background: var(--light-blue); padding: 2rem; border-radius: 10px; text-align: center;">
+            <div style="background: var(--light-blue); padding: 2rem; border-radius: 10px; text-align: center; cursor: pointer;" onclick="filterVideos('smart-home')">
                 <i class="fas fa-home" style="font-size: 2.5rem; color: var(--secondary-blue); margin-bottom: 1rem;"></i>
                 <h3>Smart Home Privacy</h3>
                 <p>5 videos • 2.5 hours</p>
-                <a href="#" style="color: var(--secondary-blue);">Start Learning →</a>
+                <span style="color: var(--secondary-blue);">Start Learning →</span>
             </div>
-            <div style="background: var(--light-blue); padding: 2rem; border-radius: 10px; text-align: center;">
+            <div style="background: var(--light-blue); padding: 2rem; border-radius: 10px; text-align: center; cursor: pointer;" onclick="filterVideos('wearables')">
                 <i class="fas fa-heartbeat" style="font-size: 2.5rem; color: var(--secondary-blue); margin-bottom: 1rem;"></i>
                 <h3>Wearable Security</h3>
                 <p>4 videos • 2 hours</p>
-                <a href="#" style="color: var(--secondary-blue);">Start Learning →</a>
+                <span style="color: var(--secondary-blue);">Start Learning →</span>
             </div>
-            <div style="background: var(--light-blue); padding: 2rem; border-radius: 10px; text-align: center;">
+            <div style="background: var(--light-blue); padding: 2rem; border-radius: 10px; text-align: center; cursor: pointer;" onclick="filterVideos('voice')">
                 <i class="fas fa-microphone-alt" style="font-size: 2.5rem; color: var(--secondary-blue); margin-bottom: 1rem;"></i>
                 <h3>Voice Assistant Risks</h3>
                 <p>6 videos • 3 hours</p>
-                <a href="#" style="color: var(--secondary-blue);">Start Learning →</a>
+                <span style="color: var(--secondary-blue);">Start Learning →</span>
             </div>
         </div>
 
@@ -594,8 +640,8 @@
             <h2>Get New Video Alerts</h2>
             <p>Subscribe to receive notifications when we add new educational videos</p>
             <div class="newsletter-input">
-                <input type="email" placeholder="Your email address">
-                <button onclick="alert('Demo: Thank you for subscribing!')">Subscribe</button>
+                <input type="email" placeholder="Your email address" id="newsletterEmail">
+                <button onclick="subscribeNewsletter()">Subscribe</button>
             </div>
             <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">
                 <i class="fas fa-lock"></i> We'll never share your email. Unsubscribe anytime.
@@ -682,8 +728,6 @@
             const modal = document.getElementById('videoModal');
             const wrapper = document.getElementById('videoWrapper');
             
-            // In a real implementation, you would embed the actual YouTube video
-            // This is a demo simulation
             wrapper.innerHTML = `
                 <iframe src="https://www.youtube.com/embed/${videoId}" 
                         frameborder="0" 
@@ -693,13 +737,15 @@
             `;
             
             modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
         
         function closeVideo() {
             const modal = document.getElementById('videoModal');
             const wrapper = document.getElementById('videoWrapper');
             modal.classList.remove('active');
-            wrapper.innerHTML = ''; // Clear iframe to stop video
+            wrapper.innerHTML = '';
+            document.body.style.overflow = 'auto';
         }
         
         // Close modal when clicking outside
@@ -710,15 +756,23 @@
             }
         }
         
-        // Demo video IDs - in production these would be real YouTube IDs
-        const demoVideoIds = {
-            'sgnE9zCVQT0': 'sgnE9zCVQT0',
-            '5fcea4a0-bd91-59e8-b632-3a00938a62fd': 'dQw4w9WgXcQ',
-            'ezE3mtN7': 'ezE3mtN7',
-            'princeton-iot-2016': 'princeton-iot-2016',
-            'raspberry-pi-iot': 'raspberry-pi-iot',
-            'featured-spy-devices': 'featured-spy-devices'
-        };
+        // Handle escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeVideo();
+            }
+        });
+        
+        // Newsletter subscription
+        function subscribeNewsletter() {
+            const email = document.getElementById('newsletterEmail').value;
+            if (email) {
+                alert(`Thank you for subscribing with ${email}! You'll receive alerts about new videos.`);
+                document.getElementById('newsletterEmail').value = '';
+            } else {
+                alert('Please enter your email address.');
+            }
+        }
         
         // Animation on scroll
         const observerOptions = {
@@ -735,11 +789,22 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.video-card, .stat-box, .featured-video').forEach(el => {
+        document.querySelectorAll('.video-card, .stat-box, .featured-video, [style*="background: var(--light-blue)"]').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(20px)';
             el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             observer.observe(el);
+        });
+
+        // Load fallback images if maxresdefault doesn't exist
+        document.querySelectorAll('.video-thumbnail, .featured-thumbnail').forEach(thumbnail => {
+            const img = new Image();
+            const bgImage = thumbnail.style.backgroundImage.slice(5, -2);
+            img.src = bgImage;
+            img.onerror = function() {
+                // Fallback to hqdefault if maxresdefault doesn't exist
+                thumbnail.style.backgroundImage = bgImage.replace('maxresdefault', 'hqdefault');
+            };
         });
     </script>
 </body>
