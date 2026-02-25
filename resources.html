@@ -60,6 +60,7 @@
             overflow: hidden;
             box-shadow: var(--shadow);
             transition: var(--transition);
+            display: block;
         }
         
         .video-card:hover {
@@ -279,7 +280,6 @@
             color: #666;
         }
         
-        /* Learning Path Cards */
         .learning-path-card {
             background: var(--light-blue);
             padding: 2rem;
@@ -429,6 +429,20 @@
             margin-bottom: 1rem;
         }
         
+        /* Category count badge */
+        .category-count {
+            display: inline-block;
+            background: var(--accent-orange);
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            font-size: 0.8rem;
+            line-height: 24px;
+            text-align: center;
+            margin-left: 0.5rem;
+        }
+        
         @media (max-width: 768px) {
             .featured-video {
                 grid-template-columns: 1fr;
@@ -481,11 +495,11 @@
         <!-- Statistics -->
         <div class="resource-stats">
             <div class="stat-box">
-                <div class="stat-number">6+</div>
+                <div class="stat-number">7+</div>
                 <div class="stat-label">Educational Videos</div>
             </div>
             <div class="stat-box">
-                <div class="stat-number">2.5+</div>
+                <div class="stat-number">3+</div>
                 <div class="stat-label">Hours of Content</div>
             </div>
             <div class="stat-box">
@@ -494,15 +508,15 @@
             </div>
         </div>
 
-        <!-- Category Tabs - Updated based on image -->
+        <!-- Category Tabs -->
         <div class="category-tabs">
-            <button class="category-tab active" onclick="filterVideos('all')">All Videos</button>
-            <button class="category-tab" onclick="filterVideos('demo')">Demo</button>
-            <button class="category-tab" onclick="filterVideos('talks')">Conference Talks</button>
-            <button class="category-tab" onclick="filterVideos('lectures')">University Lectures</button>
-            <button class="category-tab" onclick="filterVideos('demonstrations')">Demonstrations</button>
-            <button class="category-tab" onclick="filterVideos('explanations')">Explainer Videos</button>
-            <button class="category-tab" onclick="filterVideos('tutorial')">Tutorial</button>
+            <button class="category-tab active" onclick="filterVideos('all')">All Videos <span class="category-count">7</span></button>
+            <button class="category-tab" onclick="filterVideos('demo')">Demo <span class="category-count">1</span></button>
+            <button class="category-tab" onclick="filterVideos('talks')">Conference Talks <span class="category-count">2</span></button>
+            <button class="category-tab" onclick="filterVideos('lectures')">University Lectures <span class="category-count">1</span></button>
+            <button class="category-tab" onclick="filterVideos('demonstrations')">Demonstrations <span class="category-count">0</span></button>
+            <button class="category-tab" onclick="filterVideos('explanations')">Explainer Videos <span class="category-count">1</span></button>
+            <button class="category-tab" onclick="filterVideos('tutorial')">Tutorial <span class="category-count">2</span></button>
         </div>
 
         <!-- No Videos Message -->
@@ -514,30 +528,7 @@
 
         <!-- Video Grid -->
         <div class="video-grid" id="videoGrid">
-            <!-- Video 1: DEF CON Talk - IoT Surveillance (Conference Talks) -->
-            <div class="video-card" data-category="talks">
-                <div class="video-thumbnail" onclick="openVideo('WCnojaEpF2I')" style="background-image: url('https://img.youtube.com/vi/WCnojaEpF2I/maxresdefault.jpg');">
-                    <div class="play-button">
-                        <i class="fas fa-play"></i>
-                    </div>
-                    <span class="video-duration">32:15</span>
-                </div>
-                <div class="video-content">
-                    <span class="video-category">Conference Talk</span>
-                    <h3 class="video-title">Unmasking the Snitch Puck: IoT Surveillance in School Bathrooms</h3>
-                    <p class="video-description">DEF CON presentation exposing hidden IoT surveillance devices disguised as smoke detectors. Reveals how easily these devices can be hacked and used to spy on building occupants.</p>
-                    <div class="video-meta">
-                        <span><i class="fas fa-calendar"></i> 2024</span>
-                        <span><i class="fas fa-video"></i> DEF CON</span>
-                        <span class="source-badge"><i class="fas fa-shield-alt"></i> Security Research</span>
-                    </div>
-                    <button class="watch-btn" onclick="openVideo('WCnojaEpF2I')">
-                        <i class="fab fa-youtube"></i> Watch Video
-                    </button>
-                </div>
-            </div>
-
-            <!-- Video 2: PriviFy - Tangible Privacy Interface Demo (Demo Category) -->
+            <!-- Video 1: PriviFy - Tangible Privacy Interface Demo (Demo Category) -->
             <div class="video-card" data-category="demo">
                 <div class="video-thumbnail" onclick="openVideo('mzy84Vb_Gxk')" style="background-image: url('https://img.youtube.com/vi/mzy84Vb_Gxk/maxresdefault.jpg');">
                     <div class="play-button">
@@ -555,6 +546,29 @@
                         <span class="source-badge"><i class="fas fa-flask"></i> Research</span>
                     </div>
                     <button class="watch-btn" onclick="openVideo('mzy84Vb_Gxk')">
+                        <i class="fab fa-youtube"></i> Watch Video
+                    </button>
+                </div>
+            </div>
+
+            <!-- Video 2: DEF CON Talk - IoT Surveillance (Conference Talks) -->
+            <div class="video-card" data-category="talks">
+                <div class="video-thumbnail" onclick="openVideo('WCnojaEpF2I')" style="background-image: url('https://img.youtube.com/vi/WCnojaEpF2I/maxresdefault.jpg');">
+                    <div class="play-button">
+                        <i class="fas fa-play"></i>
+                    </div>
+                    <span class="video-duration">32:15</span>
+                </div>
+                <div class="video-content">
+                    <span class="video-category">Conference Talk</span>
+                    <h3 class="video-title">Unmasking the Snitch Puck: IoT Surveillance in School Bathrooms</h3>
+                    <p class="video-description">DEF CON presentation exposing hidden IoT surveillance devices disguised as smoke detectors. Reveals how easily these devices can be hacked and used to spy on building occupants.</p>
+                    <div class="video-meta">
+                        <span><i class="fas fa-calendar"></i> 2024</span>
+                        <span><i class="fas fa-video"></i> DEF CON</span>
+                        <span class="source-badge"><i class="fas fa-shield-alt"></i> Security Research</span>
+                    </div>
+                    <button class="watch-btn" onclick="openVideo('WCnojaEpF2I')">
                         <i class="fab fa-youtube"></i> Watch Video
                     </button>
                 </div>
@@ -629,7 +643,7 @@
                 </div>
             </div>
 
-            <!-- Video 6: Raspberry Pi Security Implementation (Tutorial Category) -->
+            <!-- Video 6: Raspberry Pi Security Implementation (Tutorial) -->
             <div class="video-card" data-category="tutorial">
                 <div class="video-thumbnail" onclick="openVideo('lZwNUfYQgTI')" style="background-image: url('https://img.youtube.com/vi/lZwNUfYQgTI/maxresdefault.jpg');">
                     <div class="play-button">
@@ -652,7 +666,7 @@
                 </div>
             </div>
 
-            <!-- Video 7: Raspberry Pi Camera Module (Tutorial Category) -->
+            <!-- Video 7: Raspberry Pi Camera Module (Tutorial) -->
             <div class="video-card" data-category="tutorial">
                 <div class="video-thumbnail" onclick="openVideo('raspberry-pi-camera')" style="background-image: url('https://img.youtube.com/vi/raspberry-pi-camera/maxresdefault.jpg');">
                     <div class="play-button">
@@ -815,19 +829,18 @@
                 }
             });
             
-            // Filter videos
+            // Filter videos - show only matching category
             videos.forEach(video => {
+                const videoCategory = video.getAttribute('data-category');
+                
                 if (category === 'all') {
                     video.style.display = 'block';
                     visibleCount++;
+                } else if (videoCategory === category) {
+                    video.style.display = 'block';
+                    visibleCount++;
                 } else {
-                    const videoCategory = video.getAttribute('data-category');
-                    if (videoCategory === category) {
-                        video.style.display = 'block';
-                        visibleCount++;
-                    } else {
-                        video.style.display = 'none';
-                    }
+                    video.style.display = 'none';
                 }
             });
             
@@ -837,6 +850,9 @@
             } else {
                 noVideosMsg.style.display = 'none';
             }
+            
+            // Log for debugging
+            console.log(`Category: ${category}, Visible videos: ${visibleCount}`);
         }
         
         // Video modal functions
@@ -907,6 +923,11 @@
             el.style.transform = 'translateY(20px)';
             el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             observer.observe(el);
+        });
+        
+        // Initialize with All Videos showing
+        document.addEventListener('DOMContentLoaded', function() {
+            filterVideos('all');
         });
     </script>
 </body>
